@@ -16,6 +16,7 @@ import useBreadcrumbs from "./components/breadcrumbs/use-breadcrumbs";
 import PrivateRoute from "./components/PrivateRoute";
 import { UserIndex } from "./user/UserIndex";
 import { ArticleIndex } from "./article/ArticleIndex";
+import { TagsIndex } from "./tags/TagsIndex";
 
 const App = (): React.ReactElement => {
   const history = useHistory();
@@ -86,6 +87,7 @@ const AppLayout = (): React.ReactElement => {
             <PrivateRoute exact path="/" component={Navigation} />
             <PrivateRoute path="/users" component={UserIndex} />
             <PrivateRoute path="/articles" component={ArticleIndex} />
+            <PrivateRoute path="/tags" component={TagsIndex} />
           </Switch>
         </Page>
       </MainLayout.Content>
