@@ -27,7 +27,7 @@ model Article {
   updatedAt DateTime @updatedAt
 }
 
-model Tags {
+model Tag {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
   Name      String?
