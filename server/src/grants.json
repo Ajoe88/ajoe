@@ -118,5 +118,65 @@
     "resource": "Article",
     "action": "read:any",
     "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Tags",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "ajoe",
+    "resource": "Tags",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Tags",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "ajoe",
+    "resource": "Tags",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Tags",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "ajoe",
+    "resource": "Tags",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Tags",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "ajoe",
+    "resource": "Tags",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Tags",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "ajoe",
+    "resource": "Tags",
+    "action": "read:any",
+    "attributes": "*"
   }
 ]
