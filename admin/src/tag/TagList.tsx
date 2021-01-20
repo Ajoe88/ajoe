@@ -62,7 +62,7 @@ export const TagList = (): React.ReactElement => {
         sortDir={SORT_DATA}
         toolbarContentEnd={
           <Link to={"/tags/new"}>
-            <Button>Create Tags </Button>
+            <Button>Create Tag </Button>
           </Link>
         }
       >
