@@ -19,7 +19,7 @@ import { TagCreateInput } from "../api/tag/TagCreateInput";
 const INITIAL_VALUES = {} as TagCreateInput;
 
 export const CreateTag = (): React.ReactElement => {
-  useBreadcrumbs("/tags/new", "Create Tags");
+  useBreadcrumbs("/tags/new", "Create Tag");
   const history = useHistory();
 
   const [create, { error, isError, isLoading }] = useMutation<
@@ -49,7 +49,7 @@ export const CreateTag = (): React.ReactElement => {
         <Form
           formStyle={EnumFormStyle.Horizontal}
           formHeaderContent={
-            <FormHeader title={"Create Tags"}>
+            <FormHeader title={"Create Tag"}>
               <Button type="submit" disabled={isLoading}>
                 Save
               </Button>

@@ -84,7 +84,7 @@ export const Tag = (): React.ReactElement => {
             formStyle={EnumFormStyle.Horizontal}
             formHeaderContent={
               <FormHeader
-                title={`${"Tags"} ${
+                title={`${"Tag"} ${
                   data?.Name && data?.Name.length ? data.Name : data?.id
                 }`}
               >
