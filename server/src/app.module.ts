@@ -1,7 +1,6 @@
 import { Module } from "@nestjs/common";
 import { UserModule } from "./user/user.module";
 import { ArticleModule } from "./article/article.module";
-import { TagModule } from "./tag/tag.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { MorganModule } from "nest-morgan";
@@ -15,7 +14,6 @@ import { GraphQLModule } from "@nestjs/graphql";
   imports: [
     UserModule,
     ArticleModule,
-    TagModule,
     ACLModule,
     AuthModule,
     MorganModule,
