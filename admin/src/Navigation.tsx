@@ -7,7 +7,7 @@ const Navigation = (): React.ReactElement => {
     <>
       <NavigationItem name="Users" to="/users" />
       <NavigationItem name="Articles" to="/articles" />
-      <NavigationItem name="Tag" to="/tags" />
+      <NavigationItem name="Tags" to="/tags" />
     </>
   );
 };

@@ -121,61 +121,61 @@
   },
   {
     "role": "user",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "ajoe",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "ajoe",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "ajoe",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "ajoe",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "ajoe",
-    "resource": "Tag",
+    "resource": "Tags",
     "action": "read:any",
     "attributes": "*"
   }
