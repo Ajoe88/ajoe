@@ -26,9 +26,3 @@ model Article {
   Title     String
   updatedAt DateTime @updatedAt
 }
-
-model Tag {
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  Name      String?
-}
