@@ -6,7 +6,8 @@ import { AuthModule } from "./auth/auth.module";
 import { MorganModule } from "nest-morgan";
 import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ServeStaticModule } from "@nestjs/serve-static";
-import { ServeStaticOptionsService } from "./serveStaticOptions.service";
+import { ServeStaticOptionsService } from "./serveAdminStaticOptions.service";
+import { ServeClientStaticOptionsService } from "./serveClientStaticOptions.service";
 import { GraphQLModule } from "@nestjs/graphql";
 
 @Module({
@@ -20,6 +21,9 @@ import { GraphQLModule } from "@nestjs/graphql";
     ConfigModule.forRoot({ isGlobal: true }),
     ServeStaticModule.forRootAsync({
       useClass: ServeStaticOptionsService,
+    }),
+    ServeStaticModule.forRootAsync({
+      useClass: ServeClientStaticOptionsService,
     }),
     GraphQLModule.forRootAsync({
       useFactory: (configService) => {
