@@ -21,10 +21,12 @@ WORKDIR /app
 # Copy files specifiying dependencies
 COPY server/package.json server/package-lock.json ./server/
 COPY admin/package.json admin/package-lock.json ./admin/
+COPY client/package.json client/package-lock.json ./client/
 
 # Install dependencies
 RUN cd server; npm ci --loglevel=$NPM_LOG_LEVEL;
 RUN cd admin; npm ci --loglevel=$NPM_LOG_LEVEL;
+RUN cd client; npm ci --loglevel=$NPM_LOG_LEVEL;
 
 # Copy Prisma schema
 COPY server/prisma/schema.prisma ./server/prisma/
@@ -36,13 +38,14 @@ RUN cd server; npm run prisma:generate;
 COPY . .
 
 # Build code
-RUN set -e; (cd server; npm run build) & (cd admin; npm run build)
+RUN set -e; (cd server; npm run build) & (cd admin; npm run build) &  & (cd client; npm run build)
 
 # Expose the port the server listens to
 EXPOSE 3000
 
 # Make server to serve admin built files
 ENV SERVE_STATIC_ROOT_PATH=admin/build
+ENV SERVE_CLIENT_STATIC_ROOT_PATH=client/build
 
 # Run server
 CMD [ "node", "server/dist/main"]
