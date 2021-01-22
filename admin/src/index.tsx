@@ -11,7 +11,7 @@ import "@amplication/design-system/icons";
 ReactDOM.render(
   <React.StrictMode>
     <amplicationDesignSystem.Provider>
-      <Router>
+      <Router basename="/admin">
         <App />
       </Router>
     </amplicationDesignSystem.Provider>

@@ -1,6 +1,7 @@
 {
   "name": "ajoe-admin",
   "private": true,
+  "homepage" : "/admin",
   "dependencies": {
     "@amplication/design-system": "^0.2.0",
     "@primer/components": "^20.3.0",

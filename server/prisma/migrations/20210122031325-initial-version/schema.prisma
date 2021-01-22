@@ -1,0 +1,28 @@
+datasource postgres {
+  provider = "postgresql"
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     String[]
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Article {
+  Authors   String?
+  content   String
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  Title     String
+  updatedAt DateTime @updatedAt
+}
