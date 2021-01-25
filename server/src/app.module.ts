@@ -28,14 +28,19 @@ import { ViewModule  } from './view/view.module';
         const playground = configService.get("GRAPHQL_PLAYGROUND");
         const introspection = configService.get("GRAPHQL_INTROSPECTION");
         return {
+          debug: process.env.NODE_ENV !== "production",
           autoSchemaFile: true,
           playground,
           introspection: playground || introspection,
+          cors: {
+            origin: ["http://localhost:3000"],
+            credentials: true,
+          },
         };
       },
       inject: [ConfigService],
       imports: [ConfigModule],
-    }),
+    })
   ],
   providers: [],
 })

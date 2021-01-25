@@ -30,7 +30,7 @@ export class ServeStaticOptionsService
       this.logger.log(`Serving admin static files from ${resolvedPath}`);
       return [
         ...DEFAULT_STATIC_MODULE_OPTIONS_LIST,
-        { rootPath: resolvedPath, serveRoot: '/admin', exclude: ["/api*", "/graphql"] },
+        { rootPath: resolvedPath, serveRoot: '/admin', exclude: ["/api", "/graphql"] },
       ];
     }
     return DEFAULT_STATIC_MODULE_OPTIONS_LIST;

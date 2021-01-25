@@ -8,7 +8,7 @@ import { Credentials } from "./Credentials";
 @Controller()
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  @Post("login")
+  @Post("api/login")
   async login(@Body() body: Credentials): Promise<UserInfo> {
     const user = await this.authService.validateUser(
       body.username,

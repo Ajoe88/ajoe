@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common'
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common'
 
+import { NextMiddleware } from './nextMiddleware'
 import { ViewController } from './view.controller'
 import { ViewService } from './view.service'
 
@@ -8,4 +9,9 @@ import { ViewService } from './view.service'
   providers: [ViewService],
   controllers: [ViewController]
 })
-export class ViewModule {}
+export class ViewModule implements NestModule{
+  configure(userContext: MiddlewareConsumer){
+    userContext.apply(NextMiddleware)
+    // .forRoutes({path: 'bar', method: RequestMethod.PUT})
+ }
+}
