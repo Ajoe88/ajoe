@@ -15,7 +15,7 @@ import { User } from "./User";
 
 @swagger.ApiBasicAuth()
 @swagger.ApiTags("users")
-@common.Controller("users")
+@common.Controller("api/users")
 export class UserController {
   constructor(
     private readonly service: UserService,

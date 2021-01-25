@@ -15,7 +15,7 @@ import { Article } from "./Article";
 
 @swagger.ApiBasicAuth()
 @swagger.ApiTags("articles")
-@common.Controller("articles")
+@common.Controller("api/articles")
 export class ArticleController {
   constructor(
     private readonly service: ArticleService,

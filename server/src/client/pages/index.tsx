@@ -1,20 +1,18 @@
 import React from 'react'
 import { NextPage } from 'next'
 
-import { Dummy } from '../../dummy/dummy'
-
 type HomePageProps = {
-  dummy: Dummy
+  articles: Array<String>
 }
 
-const Home: NextPage<HomePageProps> = ({ dummy }) => {
-  return <h1>Name: {dummy.name}</h1>
+const Home: NextPage<HomePageProps> = ({ articles }) => {
+  return <p>Name: {JSON.stringify(articles)}</p>
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/dummy')
-  const dummy = await res.json()
-  return { props: { dummy } }
+  const res = await fetch('http://localhost:3000/api/articles')
+  const articles = await res.json()
+  return { props: { articles } }
 }
 
 export default Home

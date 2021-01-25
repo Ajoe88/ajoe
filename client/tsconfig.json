@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -17,7 +16,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve" 
+    "jsx": "preserve"
   },
   "include": [
     "next-env.d.ts",
@@ -25,8 +24,6 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    ".next",
-    "server/**/*.*"
+    "node_modules"
   ]
 }

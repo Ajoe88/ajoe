@@ -8,8 +8,8 @@
             "name": "RUN SERVER",
             "request": "launch",
             "runtimeArgs": [
-                "run-script",
-                "start"
+                "run",
+                "start:watch"
             ],
             "runtimeExecutable": "npm",
             "skipFiles": [
@@ -18,7 +18,5 @@
             "type": "pwa-node",
             "cwd": "${workspaceFolder}/server/"
         }
-        
-    
     ]
 }
