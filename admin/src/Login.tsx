@@ -28,7 +28,7 @@ const Login = ({ onLogin }: Props) => {
     async (data) => api.post("/api/login", data),
     {
       onSuccess: (data, variables) => {
-        onLogin(variables);
+        onLogin(data.data);
       },
     }
   );

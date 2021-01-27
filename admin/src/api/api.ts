@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getCredentials } from "../auth";
-import { createBasicAuthorizationHeader } from "./http.util";
+import { createJwtAuthorizationHeader } from "./http.util";
 
 export const api = axios.create({
   headers: {
@@ -11,10 +11,11 @@ export const api = axios.create({
 api.interceptors.request.use((config) => {
   const credentials = getCredentials();
   if (credentials) {
-    config.headers["Authorization"] = createBasicAuthorizationHeader(
-      credentials.username,
-      credentials.password
-    );
+    // config.headers["Authorization"] = createBasicAuthorizationHeader(
+    //   credentials.username,
+    //   credentials.password
+    // );
+    config.headers["Authorization"] = createJwtAuthorizationHeader();
   }
   return config;
 });
