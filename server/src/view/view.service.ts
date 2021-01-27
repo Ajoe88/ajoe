@@ -14,7 +14,7 @@ export class ViewService implements OnModuleInit {
   async onModuleInit(): Promise<void> {
     try {
         
-        const clientDir = './src/client'; // this.configService.get('SERVE_STATIC_CLIENT_PATH');
+        const clientDir = './client'; // this.configService.get('SERVE_STATIC_CLIENT_PATH');
         const resolvedPath = path.resolve(clientDir);
         if(!clientDir) {
             throw new Error('Cannot find client root')
