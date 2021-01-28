@@ -35,7 +35,7 @@ export class UserController {
   @swagger.ApiCreatedResponse({ type: User })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Body() data: UserCreateInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<User> {
@@ -57,7 +57,6 @@ export class UserController {
         `providing the properties: ${properties} on ${"User"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...query,
       data: data,
@@ -120,7 +119,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async findOne(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<User | null> {
@@ -163,7 +162,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async update(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput,
     @common.Body()
     data: UserUpdateInput,
@@ -188,7 +187,6 @@ export class UserController {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...query,
         where: params,
@@ -225,7 +223,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async delete(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<User | null> {
     try {

@@ -2,11 +2,11 @@ import { Injectable } from "@nestjs/common";
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from "./password.service";
 import {jwtConstants} from '../jwt/jwt.constants'
-// @ts-ignore
-// eslint-disable-next-line
+
 import { UserService } from "../user/user.service";
 import { UserInfo } from "./UserInfo";
 import {ForbiddenException} from '../errors'
+import { Tokens } from "./Credentials";
 @Injectable()
 export class AuthService {
   constructor(
@@ -57,7 +57,7 @@ export class AuthService {
       }
   }
 
-  async genToken(payload: any): Promise<any> {
+  async genToken(payload: any): Promise<Tokens> {
     const accessToken = `Bearer ${this.jwtService.sign(payload)}`;
     const refreshToken = this.jwtService.sign(payload, {
       expiresIn: jwtConstants.refreshTokenExpiresIn,

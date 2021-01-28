@@ -98,7 +98,6 @@ export class UserResolver {
         `providing the properties: ${properties} on ${"User"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...args,
       data: args.data,
@@ -137,7 +136,6 @@ export class UserResolver {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...args,
         data: args.data,
@@ -160,7 +158,6 @@ export class UserResolver {
   })
   async deleteUser(@graphql.Args() args: DeleteUserArgs): Promise<User | null> {
     try {
-      // @ts-ignore
       return await this.service.delete(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {

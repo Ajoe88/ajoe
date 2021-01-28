@@ -10,7 +10,7 @@ import { ViewService } from './view.service'
   controllers: [ViewController]
 })
 export class ViewModule implements NestModule{
-  configure(userContext: MiddlewareConsumer){
+  configure(userContext: MiddlewareConsumer): void{
     userContext.apply(NextMiddleware)
     // .forRoutes({path: 'bar', method: RequestMethod.PUT})
  }

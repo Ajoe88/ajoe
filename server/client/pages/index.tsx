@@ -1,15 +1,14 @@
 import React from "react";
 import { NextPage, GetServerSidePropsContext } from "next";
-import nookies from "nookies";
 import Link from 'next/link.js';
 import api from '../api'
 import { Article } from "../../src/article/Article";
-import redirect from "../redirect";
 
 type HomePageProps = {
   articles: Array<Article>;
-  ctx: any;
-  cookies: any;
+  ctx: {
+    query: Record<string, never>
+  };
 };
 
 const Home: NextPage<HomePageProps> = ({ articles, ctx }) => {

@@ -35,7 +35,7 @@ export class ArticleController {
   @swagger.ApiCreatedResponse({ type: Article })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Body() data: ArticleCreateInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<Article> {
@@ -57,7 +57,6 @@ export class ArticleController {
         `providing the properties: ${properties} on ${"Article"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...query,
       data: data,
@@ -118,7 +117,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async findOne(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<Article | null> {
@@ -160,7 +159,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async update(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput,
     @common.Body()
     data: ArticleUpdateInput,
@@ -185,7 +184,6 @@ export class ArticleController {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...query,
         where: params,
@@ -221,7 +219,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async delete(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput
   ): Promise<Article | null> {
     try {

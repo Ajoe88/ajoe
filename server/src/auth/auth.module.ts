@@ -3,7 +3,6 @@ import { PassportModule } from "@nestjs/passport";
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from "src/jwt/jwt.strategy";
 import { jwtConstants } from "src/jwt/jwt.constants";
-// @ts-ignore
 // eslint-disable-next-line
 import { UserModule } from "../user/user.module";
 import { AuthController } from "./auth.controller";

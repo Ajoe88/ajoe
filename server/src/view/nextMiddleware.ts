@@ -1,10 +1,9 @@
 
 import {Injectable, NestMiddleware} from '@nestjs/common'
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 @Injectable()
 export class NextMiddleware implements NestMiddleware{
-   constructor(){}
-   async use(req: Request, res: Response, next: Function){
+   async use(req: Request, res: Response, next: NextFunction): Promise<void> {
     // custom middleware logic
     next()
    }

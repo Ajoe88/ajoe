@@ -1,9 +1,8 @@
-import { Controller, Post, Body, UseGuards, UnauthorizedException } from "@nestjs/common";
+import { Controller, Post, Body, UnauthorizedException } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { AuthService } from "./auth.service";
-import { JwtUserInfo, UserInfo } from "./UserInfo";
-import { Credentials } from "./Credentials";
-import { AuthGuard } from '@nestjs/passport';
+import { UserInfo } from "./UserInfo";
+import { Credentials, Tokens } from "./Credentials";
 
 @ApiTags("auth")
 @Controller()
@@ -21,11 +20,10 @@ export class AuthController {
     }
     return user;
   }
-  // jwt login
+
   @Post("api/jwt")
-  async loginJwt(@Body() body: Credentials): Promise<JwtUserInfo> {
-    // 前端加密密码需要解密
-    let user = await this.authService.validateUser(
+  async loginJwt(@Body() body: Credentials): Promise<Tokens> {
+    const user = await this.authService.validateUser(
       body.username,
       body.password
     );
@@ -33,23 +31,21 @@ export class AuthController {
       throw new UnauthorizedException("The passed credentials are incorrect");
     }
 
-    
-    // 颁发 token
-    const tokenInfo = await this.authService.genToken({
+    const tokenInfo: Tokens = await this.authService.genToken({
       name: user.username,
       roles: user.roles,
     });
-
-    return Object.assign(user, {
+    return {
+      ...user,
       accessToken: tokenInfo.accessToken, 
       refreshToken: tokenInfo.refreshToken
-    });
+    };
   }
 
   
   // @UseGuards(AuthGuard('jwt')) // 使用 'JWT' 进行验证
   @Post('api/register')
-  async register(@Body() body: any) {
+  async register(@Body() body: Credentials) {
     return await this.authService.registerUser(
       body.username,
       body.password

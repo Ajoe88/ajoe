@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage, FormikProps } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from 'next/link.js';
 import * as Yup from "yup";
 
@@ -10,11 +10,11 @@ export type LoginFormValues = {
 
 export type onSubmitFunction = (values: LoginFormValues) => Promise<void>;
 export type LoginFormProps = {
-  isRegister: Boolean,
+  isRegister: boolean,
   onSubmit: onSubmitFunction
 };
 
-const authLink = (isRegister: Boolean) => (<Link href={isRegister ? '/login' : '/register'}>
+const authLink = (isRegister: boolean) => (<Link href={isRegister ? '/login' : '/register'}>
   <a className="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">
     {isRegister ? 'Login' : 'Register'}
   </a>
@@ -40,7 +40,7 @@ const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
         setSubmitting(false);
       }}
     >
-      {(props: FormikProps<any>) => (
+      {() => (
         <div className="container mx-auto h-full flex flex-1 justify-center items-center">
           <style jsx>{`
             .login {

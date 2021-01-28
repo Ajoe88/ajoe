@@ -2,7 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import nookies from "nookies";
 import redirect from './redirect'
 
-const setHeaders = (token: string) => {
+const setHeaders = (token: string): Headers => {
   const headers = new Headers();
   headers.append("Accept", "application/json");
   headers.append("Content-Type", "application/json; charset=utf-8");
@@ -15,8 +15,8 @@ export default async function apiFetch<T>(
     req: IncomingMessage, 
     res: ServerResponse,
     apiPath: string,
-    method: string = "Get", 
-    body?: object): Promise<T | void> {
+    method = "Get", 
+    body?: Partial<T>): Promise<T | void> {
 
   const {token} = nookies.get({ req });
   if(!token) {
