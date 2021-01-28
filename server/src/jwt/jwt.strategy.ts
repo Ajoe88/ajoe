@@ -16,19 +16,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
   async validate(payload: any) {
     console.log(`JWT验证 - Step 4: 被守卫调用`);
-    if (payload.clientId) {
-      // 公共接口部分
-      return {
-        clientId: payload.clientId,
-        secret: payload.secret,
-      };
-    } else {
-      // 返回的对象注入到 request.user
-      return {
-        name: payload.name,
-        roles: payload.roles,
-        permissions: payload.permissions,
-      };
-    }
+    // 返回的对象注入到 request.user
+    return {
+      name: payload.name,
+      roles: payload.roles,
+    };
   }
 }

@@ -2,11 +2,12 @@ import React from "react";
 
 import { NextPage, GetServerSidePropsContext } from "next";
 import { Article } from "../../../src/article/Article";
-import nookies from "nookies";
+import api from "../../api";
 
 type ArticlePageProps = {
   article: Article
 }
+
 const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
   return (
     <div>
@@ -15,20 +16,11 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
     </div>
   );
 }
+
 export const getServerSideProps = async ({
-  query,
-  req,
+  query, req, res
 }: GetServerSidePropsContext) => {
-  const cookies = nookies.get({ req });
-  const content = await fetch(
-    `http://localhost:3000/api/articles/${query.id}`,
-    {
-      headers: {
-        Authorization: cookies.token,
-      },
-    }
-  );
-  const article = await content.json();
+  const article = await api(req, res, `articles/${query.id}`);
   return { props: { article } };
 };
 

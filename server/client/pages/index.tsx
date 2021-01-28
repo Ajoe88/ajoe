@@ -2,8 +2,9 @@ import React from "react";
 import { NextPage, GetServerSidePropsContext } from "next";
 import nookies from "nookies";
 import Link from 'next/link.js';
-
+import api from '../api'
 import { Article } from "../../src/article/Article";
+import redirect from "../redirect";
 
 type HomePageProps = {
   articles: Array<Article>;
@@ -34,14 +35,9 @@ const Home: NextPage<HomePageProps> = ({ articles, ctx }) => {
 export const getServerSideProps = async ({
   query,
   req,
+  res,
 }: GetServerSidePropsContext) => {
-  const cookies = nookies.get({ req });
-  const content = await fetch("http://localhost:3000/api/articles", {
-    headers: {
-      Authorization: cookies.token,
-    },
-  });
-  const articles = await content.json();
+  const articles = await api(req, res, "articles");
   return { props: { articles, ctx: { query } } };
 };
 
