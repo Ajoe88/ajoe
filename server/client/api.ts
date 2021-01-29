@@ -1,6 +1,6 @@
-import { IncomingMessage, ServerResponse } from 'http'
-import nookies from "nookies";
-import redirect from './redirect'
+import { IncomingMessage, ServerResponse } from "http";
+import { parseCookies } from "nookies";
+import redirect from "./redirect";
 
 const setHeaders = (token: string): Headers => {
   const headers = new Headers();
@@ -8,33 +8,39 @@ const setHeaders = (token: string): Headers => {
   headers.append("Content-Type", "application/json; charset=utf-8");
   headers.append("Authorization", token);
 
-  return headers
-}
+  return headers;
+};
 
+/**
+ * universal api for both server side render and client
+ * @param apiPath api modlue name or path
+ * @param req use for server side render
+ * @param res use for server side render
+ * @param method Get/Post/...
+ * @param body request parameters
+ */
 export default async function apiFetch<T>(
-    req: IncomingMessage, 
-    res: ServerResponse,
-    apiPath: string,
-    method = "Get", 
-    body?: Partial<T>): Promise<T | void> {
-
-  const {token} = nookies.get({ req });
-  if(!token) {
-    redirect(res, '/login')
+  apiPath: string,
+  req?: IncomingMessage,
+  res?: ServerResponse,
+  method = "Get",
+  body?: Partial<T>
+): Promise<T | void> {
+  const { token } = parseCookies({ req });
+  if (!token && res) {
+    redirect(res, "/login");
     return;
   }
-  
-  const headers = setHeaders(token)
- 
+
+  const headers = setHeaders(token);
+
   return await fetch(`http://localhost:3000/api/${apiPath}`, {
     headers,
     method,
     credentials: "include",
     mode: "cors",
     body: JSON.stringify(body),
-  })
-    .then(response => {
-      console.log(response, 'response')
-      return response.json()
-    });
+  }).then((response) => {
+    return response.json();
+  });
 }

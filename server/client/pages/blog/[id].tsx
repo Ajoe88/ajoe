@@ -20,7 +20,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 export const getServerSideProps = async ({
   query, req, res
 }: GetServerSidePropsContext) => {
-  const article = await api(req, res, `articles/${query.id}`);
+  const article = await api(`articles/${query.id}`, req, res);
   return { props: { article } };
 };
 

@@ -44,6 +44,7 @@
     "formik": "^2.2.6",
     "graphql": "^15.4.0",
     "graphql-tools": "^4.0.8",
+    "mobx-react": "^7.1.0",
     "nest-access-control": "^2.0.2",
     "nest-morgan": "^1.0.1",
     "nestjs-prisma": "^0.7.0",
@@ -93,9 +94,9 @@
   },
   "husky": {
     "hooks": {
-      "prepublish": "npm run build",
-      "precommit": "npm run lint:eslint",
-      "prepush": "npm run test"
+      "pre-publish": "npm run build",
+      "pre-commit": "npm run lint:eslint",
+      "pre-push": "npm run test"
     }
   }
 }
