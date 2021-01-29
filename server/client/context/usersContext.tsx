@@ -1,6 +1,6 @@
 import React from "react";
 import { useUsers } from "../hooks/useUsers";
-import {User} from '../../src/user/User';
+// import {User} from '../../src/user/User';
 
 // type UsersContextProps = {
 //   users: Array<User>,
