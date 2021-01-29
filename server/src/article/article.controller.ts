@@ -3,7 +3,7 @@ import * as swagger from "@nestjs/swagger";
 import * as nestMorgan from "nest-morgan";
 import * as nestAccessControl from "nest-access-control";
 // import * as basicAuthGuard from "../auth/basicAuth.guard";
-import {JwtAuthGuard} from "../jwt/jwt.guard"
+import { JwtAuthGuard } from "../jwt/jwt.guard";
 import * as abacUtil from "../auth/abac.util";
 import { isRecordNotFoundError } from "../prisma.util";
 import * as errors from "../errors";

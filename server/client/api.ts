@@ -32,11 +32,9 @@ export default async function apiFetch<T>(
     credentials: "include",
     mode: "cors",
     body: JSON.stringify(body),
-  }).then(response => {
-    console.log(response, 'response')
-    if (response.status === 200) {
-      return response.json();
-    }
-    throw new Error(response.statusText);
-  });
+  })
+    .then(response => {
+      console.log(response, 'response')
+      return response.json()
+    });
 }

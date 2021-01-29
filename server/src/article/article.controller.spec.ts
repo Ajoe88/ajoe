@@ -3,10 +3,11 @@ import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
 import request from "supertest";
 import { MorganModule } from "nest-morgan";
 import { ACGuard } from "nest-access-control";
-import { BasicAuthGuard } from "../auth/basicAuth.guard";
+// import { BasicAuthGuard } from "../auth/basicAuth.guard";
 import { ACLModule } from "../auth/acl.module";
 import { ArticleController } from "./article.controller";
 import { ArticleService } from "./article.service";
+import { JwtAuthGuard } from "../jwt/jwt.guard";
 
 const nonExistingId = "nonExistingId";
 const existingId = "existingId";
@@ -60,15 +61,15 @@ const service = {
   },
 };
 
-const basicAuthGuard = {
+const jwtAuthGuard = {
   canActivate: (context: ExecutionContext) => {
-    const argumentHost = context.switchToHttp();
-    const request = argumentHost.getRequest();
-    request.user = {
+    const req = context.switchToHttp().getRequest();
+    req.user = {
       roles: ["user"],
+      username: "user"
     };
     return true;
-  },
+  }
 };
 
 const acGuard = {
@@ -86,13 +87,13 @@ describe("Article", () => {
         {
           provide: ArticleService,
           useValue: service,
-        },
+        }
       ],
       controllers: [ArticleController],
       imports: [MorganModule.forRoot(), ACLModule],
     })
-      .overrideGuard(BasicAuthGuard)
-      .useValue(basicAuthGuard)
+      .overrideGuard(JwtAuthGuard)
+      .useValue(jwtAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
       .compile();
@@ -101,9 +102,9 @@ describe("Article", () => {
     await app.init();
   });
 
-  test("POST /articles", async () => {
+  test("POST /api/articles", async () => {
     await request(app.getHttpServer())
-      .post("/articles")
+      .post("/api/articles")
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
       .expect({
@@ -113,9 +114,9 @@ describe("Article", () => {
       });
   });
 
-  test("GET /articles", async () => {
+  test("GET /api/articles", async () => {
     await request(app.getHttpServer())
-      .get("/articles")
+      .get("/api/articles")
       .expect(HttpStatus.OK)
       .expect([
         {
@@ -126,9 +127,9 @@ describe("Article", () => {
       ]);
   });
 
-  test("GET /articles/:id non existing", async () => {
+  test("GET /api/articles/:id non existing", async () => {
     await request(app.getHttpServer())
-      .get(`${"/articles"}/${nonExistingId}`)
+      .get(`${"/api/articles"}/${nonExistingId}`)
       .expect(404)
       .expect({
         statusCode: 404,
@@ -139,7 +140,7 @@ describe("Article", () => {
 
   test("GET /articles/:id existing", async () => {
     await request(app.getHttpServer())
-      .get(`${"/articles"}/${existingId}`)
+      .get(`${"/api/articles"}/${existingId}`)
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,

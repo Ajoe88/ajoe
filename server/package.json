@@ -6,7 +6,7 @@
     "start:watch": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "build": "nest build",
-    "test": "jest",
+    "test": "jest --config ./jest.config.js",
     "seed": "ts-node scripts/seed.ts",
     "db:migrate-save": "prisma --experimental migrate save",
     "db:migrate-up": "prisma --experimental migrate up",
@@ -15,7 +15,11 @@
     "prisma:generate": "prisma generate",
     "docker:db": "docker-compose -f docker-compose.db.yml up -d",
     "docker:build": "docker build .",
-    "start:local": "npm run docker:db & nest start"
+    "start:local": "npm run docker:db & nest start",
+    "lint:eslint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prepublish": "npm run build",
+    "precommit": "npm run lint:eslint",
+    "prepush": "npm run test"
   },
   "dependencies": {
     "@nestjs/common": "^7.3.2",
@@ -43,6 +47,7 @@
     "formik": "^2.2.6",
     "graphql": "^15.4.0",
     "graphql-tools": "^4.0.8",
+    "husky": "^4.3.8",
     "nest-access-control": "^2.0.2",
     "nest-morgan": "^1.0.1",
     "nestjs-prisma": "^0.7.0",

@@ -11,8 +11,8 @@ import { Tokens } from "./Credentials";
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly passwordService: PasswordService,
     private readonly jwtService: JwtService,
+    private readonly passwordService: PasswordService,
   ) {}
 
   async validateUser(

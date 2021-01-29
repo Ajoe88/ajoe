@@ -1,0 +1,11 @@
+{
+    "eslint.workingDirectories": ["server"],
+    // vscode jest extension
+    // "jest.rootPath": "server",
+    // "jest.pathToJest": "./server/node_modules/jest/bin/jest",
+    // vscode jest-runner extension
+    "jestrunner.jestCommand": "npm test",
+    "jestrunner.projectPath": "server",
+    "jestrunner.runOptions": ["--watch", "--coverage=false"],
+    "jestrunner.jestPath": "node_modules/jest/bin/jest",
+}
