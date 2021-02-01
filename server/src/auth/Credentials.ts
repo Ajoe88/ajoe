@@ -8,3 +8,10 @@ export class Credentials {
   @IsString()
   password!: string;
 }
+
+export class Tokens {
+  @IsString()
+  accessToken!: string;
+  @IsString()
+  refreshToken!: string;
+}

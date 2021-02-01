@@ -98,7 +98,6 @@ export class ArticleResolver {
         `providing the properties: ${properties} on ${"Article"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...args,
       data: args.data,
@@ -137,7 +136,6 @@ export class ArticleResolver {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...args,
         data: args.data,
@@ -162,7 +160,6 @@ export class ArticleResolver {
     @graphql.Args() args: DeleteArticleArgs
   ): Promise<Article | null> {
     try {
-      // @ts-ignore
       return await this.service.delete(args);
     } catch (error) {
       if (isRecordNotFoundError(error)) {

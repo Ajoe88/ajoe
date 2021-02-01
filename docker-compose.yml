@@ -1,5 +1,14 @@
 version: "3"
 services:
+  # client:
+  #   build:
+  #     context: .
+  #     args:
+  #       NPM_LOG_LEVEL: notice
+  #   ports:
+  #     - "${SERVER_PORT}:3001"
+  #   depends_on:
+  #     - server
   server:
     build:
       context: .

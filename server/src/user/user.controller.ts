@@ -2,7 +2,8 @@ import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import * as nestMorgan from "nest-morgan";
 import * as nestAccessControl from "nest-access-control";
-import * as basicAuthGuard from "../auth/basicAuth.guard";
+// import * as basicAuthGuard from "../auth/basicAuth.guard";
+import {JwtAuthGuard} from "../jwt/jwt.guard"
 import * as abacUtil from "../auth/abac.util";
 import { isRecordNotFoundError } from "../prisma.util";
 import * as errors from "../errors";
@@ -15,7 +16,7 @@ import { User } from "./User";
 
 @swagger.ApiBasicAuth()
 @swagger.ApiTags("users")
-@common.Controller("users")
+@common.Controller("api/users")
 export class UserController {
   constructor(
     private readonly service: UserService,
@@ -24,7 +25,7 @@ export class UserController {
   ) {}
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Post()
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -34,7 +35,7 @@ export class UserController {
   @swagger.ApiCreatedResponse({ type: User })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Body() data: UserCreateInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<User> {
@@ -56,7 +57,6 @@ export class UserController {
         `providing the properties: ${properties} on ${"User"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...query,
       data: data,
@@ -73,7 +73,7 @@ export class UserController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Get()
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -108,7 +108,7 @@ export class UserController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Get("/:id")
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -119,7 +119,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async findOne(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<User | null> {
@@ -151,7 +151,7 @@ export class UserController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Patch("/:id")
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -162,7 +162,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async update(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput,
     @common.Body()
     data: UserUpdateInput,
@@ -187,7 +187,6 @@ export class UserController {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...query,
         where: params,
@@ -213,7 +212,7 @@ export class UserController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Delete("/:id")
   @nestAccessControl.UseRoles({
     resource: "User",
@@ -224,7 +223,7 @@ export class UserController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async delete(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: UserWhereUniqueInput
   ): Promise<User | null> {
     try {
@@ -250,4 +249,5 @@ export class UserController {
       throw error;
     }
   }
+  
 }

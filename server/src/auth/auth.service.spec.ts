@@ -4,6 +4,7 @@ import { AuthService } from "./auth.service";
 // eslint-disable-next-line
 import { UserService, User } from "../user/user.service";
 import { PasswordService } from "./password.service";
+import { JwtService } from "@nestjs/jwt";
 
 const VALID_USER: User = {
   username: "Valid User",
@@ -15,6 +16,15 @@ const INVALID_USER: User = {
 };
 
 const userService = {
+  findOne(args: { where: { username: string } }): User | null {
+    if (args.where.username === VALID_USER.username) {
+      return VALID_USER;
+    }
+    return null;
+  },
+};
+
+const jwtService = {
   findOne(args: { where: { username: string } }): User | null {
     if (args.where.username === VALID_USER.username) {
       return VALID_USER;
@@ -38,6 +48,10 @@ describe("AuthService", () => {
         {
           provide: UserService,
           useValue: userService,
+        },
+        {
+          provide: JwtService,
+          useValue: jwtService,
         },
         {
           provide: PasswordService,

@@ -3,9 +3,10 @@ import { EventEmitter } from "events";
 export type Credentials = {
   username: string;
   password: string;
+  accessToken: string;
 };
 
-const CREDENTIALS_LOCAL_STORAGE_ITEM = "credentials";
+const CREDENTIALS_LOCAL_STORAGE_ITEM =  "token"; //"credentials";
 
 const eventEmitter = new EventEmitter();
 
@@ -22,16 +23,16 @@ export function listen(listener: (authenticated: boolean) => void): void {
 export function setCredentials(credentials: Credentials) {
   localStorage.setItem(
     CREDENTIALS_LOCAL_STORAGE_ITEM,
-    JSON.stringify(credentials)
+    credentials.accessToken
   );
 }
 
-export function getCredentials(): Credentials | null {
+export function getCredentials(): String | null {
   const raw = localStorage.getItem(CREDENTIALS_LOCAL_STORAGE_ITEM);
   if (raw === null) {
     return null;
   }
-  return JSON.parse(raw);
+  return raw;
 }
 
 export function removeCredentials(): void {

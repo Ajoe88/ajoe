@@ -10,7 +10,7 @@ import { GqlExecutionContext } from "@nestjs/graphql";
 export const UserRoles = createParamDecorator(
   (data: string, context: ExecutionContext) => {
     const ctx = GqlExecutionContext.create(context);
-    const request = ctx.getContext<{ req: { user: any } }>().req;
+    const request = ctx.getContext<{ req: { user: Record<string, never> } }>().req;
     return data ? request.user[data] : request.user.roles;
   }
 );

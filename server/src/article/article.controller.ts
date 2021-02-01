@@ -2,7 +2,8 @@ import * as common from "@nestjs/common";
 import * as swagger from "@nestjs/swagger";
 import * as nestMorgan from "nest-morgan";
 import * as nestAccessControl from "nest-access-control";
-import * as basicAuthGuard from "../auth/basicAuth.guard";
+// import * as basicAuthGuard from "../auth/basicAuth.guard";
+import { JwtAuthGuard } from "../jwt/jwt.guard";
 import * as abacUtil from "../auth/abac.util";
 import { isRecordNotFoundError } from "../prisma.util";
 import * as errors from "../errors";
@@ -15,7 +16,7 @@ import { Article } from "./Article";
 
 @swagger.ApiBasicAuth()
 @swagger.ApiTags("articles")
-@common.Controller("articles")
+@common.Controller("api/articles")
 export class ArticleController {
   constructor(
     private readonly service: ArticleService,
@@ -24,7 +25,7 @@ export class ArticleController {
   ) {}
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Post()
   @nestAccessControl.UseRoles({
     resource: "Article",
@@ -34,7 +35,7 @@ export class ArticleController {
   @swagger.ApiCreatedResponse({ type: Article })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async create(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Body() data: ArticleCreateInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<Article> {
@@ -56,7 +57,6 @@ export class ArticleController {
         `providing the properties: ${properties} on ${"Article"} creation is forbidden for roles: ${roles}`
       );
     }
-    // @ts-ignore
     return await this.service.create({
       ...query,
       data: data,
@@ -72,7 +72,7 @@ export class ArticleController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Get()
   @nestAccessControl.UseRoles({
     resource: "Article",
@@ -106,7 +106,7 @@ export class ArticleController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Get("/:id")
   @nestAccessControl.UseRoles({
     resource: "Article",
@@ -117,7 +117,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async findOne(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput,
     @nestAccessControl.UserRoles() userRoles: string[]
   ): Promise<Article | null> {
@@ -148,7 +148,7 @@ export class ArticleController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Patch("/:id")
   @nestAccessControl.UseRoles({
     resource: "Article",
@@ -159,7 +159,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async update(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput,
     @common.Body()
     data: ArticleUpdateInput,
@@ -184,7 +184,6 @@ export class ArticleController {
       );
     }
     try {
-      // @ts-ignore
       return await this.service.update({
         ...query,
         where: params,
@@ -209,7 +208,7 @@ export class ArticleController {
   }
 
   @common.UseInterceptors(nestMorgan.MorganInterceptor("combined"))
-  @common.UseGuards(basicAuthGuard.BasicAuthGuard, nestAccessControl.ACGuard)
+  @common.UseGuards(JwtAuthGuard, nestAccessControl.ACGuard)
   @common.Delete("/:id")
   @nestAccessControl.UseRoles({
     resource: "Article",
@@ -220,7 +219,7 @@ export class ArticleController {
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @swagger.ApiForbiddenResponse({ type: errors.ForbiddenException })
   async delete(
-    @common.Query() query: {},
+    @common.Query() query: Record<string, never>,
     @common.Param() params: ArticleWhereUniqueInput
   ): Promise<Article | null> {
     try {
