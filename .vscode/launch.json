@@ -16,7 +16,11 @@
                 "<node_internals>/**"
             ],
             "type": "pwa-node",
-            "cwd": "${workspaceFolder}/server/"
+            "cwd": "${workspaceFolder}/server/",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js",
+                "!**/node_modules/**"
+            ]
         }, {
             "type": "node",
             "name": "vscode-jest-tests",

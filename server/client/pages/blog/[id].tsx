@@ -1,8 +1,12 @@
 import React from "react";
-
 import { NextPage, GetServerSidePropsContext } from "next";
-import { Article } from "../../../src/article/Article";
+import Head from 'next/head'
+
 import api from "../../api";
+import Layout from '../../components/layout'
+import { Article } from "../../../src/article/Article";
+import Date from '../../lib/date'
+import utilStyles from '../../styles/utils.module.css'
 
 type ArticlePageProps = {
   article: Article
@@ -10,10 +14,18 @@ type ArticlePageProps = {
 
 const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
   return (
-    <div>
-      <h1>{article.Title}</h1>
-      <div>{article.content}</div>
-    </div>
+    <Layout>
+      <Head>
+        <title>{article.Title}</title>
+      </Head>
+      <article>
+        <h1 className={utilStyles.headingXl}>{article.Title}</h1>
+        <div className={utilStyles.lightText}>
+          <Date dateString={article.createdAt.toString()} />
+        </div>
+        <pre dangerouslySetInnerHTML={{ __html: article.content }} />
+      </article>
+    </Layout>
   );
 }
 
