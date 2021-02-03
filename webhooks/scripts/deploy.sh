@@ -1,8 +1,7 @@
 #!/bin/bash
-echo "Deploying  ajoe"
+echo "Deploying  testRepo"
 
 cd ~//prodsite \
 && git checkout main \
 && git pull \
-&& docker-compose up \
 && echo "ajoe deployed successfully"

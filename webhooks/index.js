@@ -41,14 +41,13 @@ handler.on('push', function (event) {
   switch (url) {
     // be careful if you use query to distinguish your app, url contains the querys, otherwise, it is equal to the path
     case '/ajoe':
-      // do sth for app1
       shell.cd('~/prodsite');
       shell.chmod('+x', '~/prodsite/webhooks/scripts/');
       shell.exec('~/prodsite/webhooks/scripts/deploy.sh');
       break
-    // case '/app2':
-      // do sth for app2
-      // break
+    case '/testRepo':
+      shell.exec('./scripts/deploy.sh');
+      break
     default:
       break
   }
