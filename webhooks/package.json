@@ -1,0 +1,21 @@
+{
+  "name": "webhooks",
+  "version": "1.0.0",
+  "description": "webhooks for multiple apps/actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webhooks",
+    "github",
+    "node"
+  ],
+  "author": "joe",
+  "license": "MIT",
+  "dependencies": {
+    "github-webhook-handler": "^1.0.0",
+    "shelljs": "^0.8.4"
+  }
+}
