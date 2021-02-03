@@ -10,5 +10,5 @@ const getUsers = () => {
 export const useUsers = () => {
   const state = useAsync(getUsers, emptyUsers); // 🤔 new array on every render?
   console.log(state)
-  return state[0];
+  return Array.isArray(state[0]) ? state[0] : []
 };

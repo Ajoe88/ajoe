@@ -42,15 +42,11 @@ const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
     >
       {() => (
         <div className="container mx-auto h-full flex flex-1 justify-center items-center">
-          <style jsx>{`
-            .login {
-              background-color: #eee;
-            }
-          `}</style>
+          <style jsx>{``}</style>
           <div className="w-full max-w-lg">
             <div className="leading-loose">
               <Form className="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl">
-                <div className="h-screen font-sans login bg-cover">
+                <div className="font-sans login bg-cover">
                   <p className="text-white font-medium text-center text-lg font-bold">
                     LOGIN
                   </p>
