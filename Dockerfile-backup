@@ -1,0 +1,66 @@
+# By default, use node 14.15.3 as the base image
+ARG IMAGE=node:14.15.0-alpine
+FROM $IMAGE as base
+
+# help us to install and build all dependencies in a separate container
+FROM base as production
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+#node gyp 
+RUN apk update && apk --no-cache add python make g++
+
+# Update npm to version 7
+RUN npm i -g npm@7.3.0
+
+# Copy package.json package-lock.json files to specifiying directory
+COPY server/package*.json ./server/
+COPY admin/package*.json ./admin/
+
+RUN npm config set registry https://registry.npm.taobao.org;
+# Install dependencies
+RUN cd server; npm ci --loglevel verbose;
+RUN cd admin; npm ci --loglevel verbose;
+
+
+
+
+# FROM base as production
+
+# Set the working direcotry
+# WORKDIR /app
+
+# Copy package.json package-lock.json files to specifiying directory
+# COPY --from=builder /app/server/node_modules  ./server/
+# COPY --from=builder /app/admin/node_modules ./admin/
+
+# Copy Prisma schema
+COPY server/prisma/schema.prisma ./server/prisma/
+
+# Generate Prisma client
+RUN cd server; npm run prisma:generate;
+
+# Copy all the files
+COPY . .
+
+# Build code
+RUN set -e; (cd server; npm run build) & (cd admin; npm run build)
+
+# Expose the port the server listens to
+EXPOSE 3000
+
+# Make server to serve admin built files
+ENV SERVE_STATIC_ROOT_PATH=admin/build
+
+# Run server
+CMD [ "node", "server/dist/main"]
+
+
+# Dev env in docker
+# FROM base as dev
+# ENV NODE_ENV=development
+# RUN npm install -g nodemon && npm install
+# COPY . /
+# CMD ["nodemon", "server/src/main"]

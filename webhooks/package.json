@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "github-webhook-handler": "^1.0.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "verbose": "^0.2.3"
   }
 }
