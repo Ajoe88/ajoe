@@ -18,5 +18,5 @@
     "strict": true,
     "jsx": "preserve"
   },
-  "exclude": [".next"]
+  "include": ["src"]
 }
