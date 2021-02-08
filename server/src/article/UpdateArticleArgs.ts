@@ -1,13 +1,13 @@
-import { ArgsType, Field } from "@nestjs/graphql";
-import { ArticleWhereUniqueInput } from "./ArticleWhereUniqueInput";
-import { ArticleUpdateInput } from "./ArticleUpdateInput";
+import { ArgsType, Field } from '@nestjs/graphql'
+import { ArticleWhereUniqueInput } from './ArticleWhereUniqueInput'
+import { ArticleUpdateInput } from './ArticleUpdateInput'
 
 @ArgsType()
 class UpdateArticleArgs {
   @Field(() => ArticleWhereUniqueInput, { nullable: false })
-  where!: ArticleWhereUniqueInput;
+  where!: ArticleWhereUniqueInput
   @Field(() => ArticleUpdateInput, { nullable: false })
-  data!: ArticleUpdateInput;
+  data!: ArticleUpdateInput
 }
 
-export { UpdateArticleArgs };
+export { UpdateArticleArgs }

@@ -1,10 +1,10 @@
-import { ArgsType, Field } from "@nestjs/graphql";
-import { ArticleWhereInput } from "./ArticleWhereInput";
+import { ArgsType, Field } from '@nestjs/graphql'
+import { ArticleWhereInput } from './ArticleWhereInput'
 
 @ArgsType()
 class FindManyArticleArgs {
   @Field(() => ArticleWhereInput, { nullable: true })
-  where?: ArticleWhereInput;
+  where?: ArticleWhereInput
 }
 
-export { FindManyArticleArgs };
+export { FindManyArticleArgs }

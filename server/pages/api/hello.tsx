@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response } from 'express'
 
 //no auth
 export default (req: Request, res: Response) => {

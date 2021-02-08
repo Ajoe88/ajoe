@@ -7,11 +7,11 @@ import { ViewService } from './view.service'
 @Module({
   imports: [],
   providers: [ViewService],
-  controllers: [ViewController]
+  controllers: [ViewController],
 })
-export class ViewModule implements NestModule{
-  configure(userContext: MiddlewareConsumer): void{
+export class ViewModule implements NestModule {
+  configure(userContext: MiddlewareConsumer): void {
     userContext.apply(NextMiddleware)
     // .forRoutes({path: 'bar', method: RequestMethod.PUT})
- }
+  }
 }

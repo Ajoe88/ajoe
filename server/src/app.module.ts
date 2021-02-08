@@ -1,14 +1,14 @@
-import { Module } from "@nestjs/common";
-import { UserModule } from "./user/user.module";
-import { ArticleModule } from "./article/article.module";
-import { ACLModule } from "./auth/acl.module";
-import { AuthModule } from "./auth/auth.module";
-import { MorganModule } from "nest-morgan";
-import { ConfigModule, ConfigService } from "@nestjs/config";
-import { ServeStaticModule } from "@nestjs/serve-static";
-import { ServeStaticOptionsService } from "./serveStaticOptions.service";
-import { GraphQLModule } from "@nestjs/graphql";
-import { ViewModule  } from './view/view.module';
+import { Module } from '@nestjs/common'
+import { UserModule } from './user/user.module'
+import { ArticleModule } from './article/article.module'
+import { ACLModule } from './auth/acl.module'
+import { AuthModule } from './auth/auth.module'
+import { MorganModule } from 'nest-morgan'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { ServeStaticOptionsService } from './serveStaticOptions.service'
+import { GraphQLModule } from '@nestjs/graphql'
+import { ViewModule } from './view/view.module'
 
 @Module({
   controllers: [],
@@ -25,22 +25,22 @@ import { ViewModule  } from './view/view.module';
     }),
     GraphQLModule.forRootAsync({
       useFactory: (configService) => {
-        const playground = configService.get("GRAPHQL_PLAYGROUND");
-        const introspection = configService.get("GRAPHQL_INTROSPECTION");
+        const playground = configService.get('GRAPHQL_PLAYGROUND')
+        const introspection = configService.get('GRAPHQL_INTROSPECTION')
         return {
-          debug: process.env.NODE_ENV !== "production",
+          debug: process.env.NODE_ENV !== 'production',
           autoSchemaFile: true,
           playground,
           introspection: playground || introspection,
           cors: {
-            origin: ["http://localhost:3000"],
+            origin: ['http://localhost:3000'],
             credentials: true,
           },
-        };
+        }
       },
       inject: [ConfigService],
       imports: [ConfigModule],
-    })
+    }),
   ],
   providers: [],
 })

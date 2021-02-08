@@ -1,13 +1,13 @@
-import { Injectable } from "@nestjs/common";
-import { hash, compare } from "bcrypt";
-import { ConfigService } from "@nestjs/config";
+import { Injectable } from '@nestjs/common'
+import { hash, compare } from 'bcrypt'
+import { ConfigService } from '@nestjs/config'
 
 /** Salt or number of rounds to generate a salt */
-export type Salt = string | number;
+export type Salt = string | number
 
-const BCRYPT_SALT_VAR = "BCRYPT_SALT";
-const UNDEFINED_SALT_OR_ROUNDS_ERROR = `${BCRYPT_SALT_VAR} is not defined`;
-const SALT_OR_ROUNDS_TYPE_ERROR = `${BCRYPT_SALT_VAR} must be a positive integer or text`;
+const BCRYPT_SALT_VAR = 'BCRYPT_SALT'
+const UNDEFINED_SALT_OR_ROUNDS_ERROR = `${BCRYPT_SALT_VAR} is not defined`
+const SALT_OR_ROUNDS_TYPE_ERROR = `${BCRYPT_SALT_VAR} must be a positive integer or text`
 
 @Injectable()
 export class PasswordService {
@@ -15,11 +15,11 @@ export class PasswordService {
    * the salt to be used to hash the password. if specified as a number then a
    * salt will be generated with the specified number of rounds and used
    */
-  salt: Salt;
+  salt: Salt
 
   constructor(private configService: ConfigService) {
-    const saltOrRounds = this.configService.get(BCRYPT_SALT_VAR);
-    this.salt = parseSalt(saltOrRounds);
+    const saltOrRounds = this.configService.get(BCRYPT_SALT_VAR)
+    this.salt = parseSalt(saltOrRounds)
   }
 
   /**
@@ -29,7 +29,7 @@ export class PasswordService {
    * @returns whether the password match the encrypted password
    */
   compare(password: string, encrypted: string): Promise<boolean> {
-    return compare(password, encrypted);
+    return compare(password, encrypted)
   }
 
   /**
@@ -37,7 +37,7 @@ export class PasswordService {
    * @return encrypted password
    */
   hash(password: string): Promise<string> {
-    return hash(password, this.salt);
+    return hash(password, this.salt)
   }
 }
 
@@ -49,16 +49,16 @@ export class PasswordService {
  */
 export function parseSalt(value: string | undefined): Salt {
   if (value === undefined) {
-    throw new Error(UNDEFINED_SALT_OR_ROUNDS_ERROR);
+    throw new Error(UNDEFINED_SALT_OR_ROUNDS_ERROR)
   }
 
-  const rounds = Number(value);
+  const rounds = Number(value)
 
   if (Number.isNaN(rounds)) {
-    return value;
+    return value
   }
   if (!Number.isInteger(rounds) || rounds < 0) {
-    throw new Error(SALT_OR_ROUNDS_TYPE_ERROR);
+    throw new Error(SALT_OR_ROUNDS_TYPE_ERROR)
   }
-  return rounds;
+  return rounds
 }

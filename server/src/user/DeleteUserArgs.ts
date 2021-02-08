@@ -1,10 +1,10 @@
-import { ArgsType, Field } from "@nestjs/graphql";
-import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
+import { ArgsType, Field } from '@nestjs/graphql'
+import { UserWhereUniqueInput } from './UserWhereUniqueInput'
 
 @ArgsType()
 class DeleteUserArgs {
   @Field(() => UserWhereUniqueInput, { nullable: false })
-  where!: UserWhereUniqueInput;
+  where!: UserWhereUniqueInput
 }
 
-export { DeleteUserArgs };
+export { DeleteUserArgs }

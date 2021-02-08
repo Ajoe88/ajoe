@@ -7,8 +7,8 @@ import utilStyles from '../../client/styles/utils.module.css'
 
 type Post = {
   postData: {
-    title: string,
-    contentHtml: string,
+    title: string
+    contentHtml: string
     date: Date
   }
 }
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
   const paths = getAllPostIds()
   return {
     paths,
-    fallback: false
+    fallback: false,
   }
 }
 
@@ -48,7 +48,7 @@ export async function getStaticProps({ params }: Params) {
   const postData = await getPostData(params.id)
   return {
     props: {
-      postData
-    }
+      postData,
+    },
   }
 }

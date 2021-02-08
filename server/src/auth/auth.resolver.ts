@@ -1,8 +1,8 @@
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
-import { ApolloError } from "apollo-server-express";
-import { AuthService } from "./auth.service";
-import { UserInfo } from "./UserInfo";
-import { LoginArgs } from "./LoginArgs";
+import { Args, Mutation, Resolver } from '@nestjs/graphql'
+import { ApolloError } from 'apollo-server-express'
+import { AuthService } from './auth.service'
+import { UserInfo } from './UserInfo'
+import { LoginArgs } from './LoginArgs'
 
 @Resolver(UserInfo)
 export class AuthResolver {
@@ -12,10 +12,10 @@ export class AuthResolver {
     const user = await this.authService.validateUser(
       args.credentials.username,
       args.credentials.password
-    );
+    )
     if (!user) {
-      throw new ApolloError("The passed credentials are incorrect");
+      throw new ApolloError('The passed credentials are incorrect')
     }
-    return user;
+    return user
   }
 }

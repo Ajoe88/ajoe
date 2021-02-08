@@ -1,21 +1,21 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import { User } from "../user/User";
+import { Field, ObjectType } from '@nestjs/graphql'
+import { User } from '../user/User'
 
 @ObjectType()
 export class UserInfo implements Partial<User> {
   @Field(() => String)
-  username!: string;
+  username!: string
   @Field(() => [String])
-  roles!: string[];
+  roles!: string[]
 }
 
 export class JwtUserInfo implements Partial<User> {
   @Field(() => String)
-  username!: string;
+  username!: string
   @Field(() => [String])
-  roles!: string[];
+  roles!: string[]
   @Field(() => [String])
-  accessToken!: string[];
+  accessToken!: string[]
   @Field(() => [String])
-  refreshToken!: string[];
+  refreshToken!: string[]
 }

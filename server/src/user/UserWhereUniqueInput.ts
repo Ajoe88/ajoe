@@ -1,6 +1,6 @@
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
+import { InputType, Field } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
+import { IsString } from 'class-validator'
 @InputType()
 class UserWhereUniqueInput {
   @ApiProperty({
@@ -9,6 +9,6 @@ class UserWhereUniqueInput {
   })
   @IsString()
   @Field(() => String)
-  id!: string;
+  id!: string
 }
-export { UserWhereUniqueInput };
+export { UserWhereUniqueInput }

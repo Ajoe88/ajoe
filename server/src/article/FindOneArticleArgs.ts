@@ -1,10 +1,10 @@
-import { ArgsType, Field } from "@nestjs/graphql";
-import { ArticleWhereUniqueInput } from "./ArticleWhereUniqueInput";
+import { ArgsType, Field } from '@nestjs/graphql'
+import { ArticleWhereUniqueInput } from './ArticleWhereUniqueInput'
 
 @ArgsType()
 class FindOneArticleArgs {
   @Field(() => ArticleWhereUniqueInput, { nullable: false })
-  where!: ArticleWhereUniqueInput;
+  where!: ArticleWhereUniqueInput
 }
 
-export { FindOneArticleArgs };
+export { FindOneArticleArgs }

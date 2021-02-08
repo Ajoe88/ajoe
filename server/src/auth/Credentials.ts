@@ -1,17 +1,17 @@
-import { InputType } from "@nestjs/graphql";
-import { IsString } from "class-validator";
+import { InputType } from '@nestjs/graphql'
+import { IsString } from 'class-validator'
 
 @InputType()
 export class Credentials {
   @IsString()
-  username!: string;
+  username!: string
   @IsString()
-  password!: string;
+  password!: string
 }
 
 export class Tokens {
   @IsString()
-  accessToken!: string;
+  accessToken!: string
   @IsString()
-  refreshToken!: string;
+  refreshToken!: string
 }

@@ -6,7 +6,7 @@ import Link from 'next/link'
 const name = 'Joe.Dev'
 export const siteTitle = 'Joe Site'
 type LayoutProps = {
-  home?: boolean,
+  home?: boolean
   children?: any
 }
 

@@ -1,22 +1,22 @@
-import React from "react";
-import { NextPage, GetServerSidePropsContext } from "next";
-import Head from "next/head";
-import Link from "next/link.js";
+import React from 'react'
+import { NextPage, GetServerSidePropsContext } from 'next'
+import Head from 'next/head'
+import Link from 'next/link.js'
 
-import api from "../client/api";
-import { Article } from "../src/article/Article";
-import Layout from "../client/components/layout";
-import Users from "../client/components/users";
-import { UserContextProvider } from "../client/context/usersContext";
-import { getSortedPostsData } from "../client/lib/posts";
+import api from '../client/api'
+import { Article } from '../src/article/Article'
+import Layout from '../client/components/layout'
+import Users from '../client/components/users'
+import { UserContextProvider } from '../client/context/usersContext'
+import { getSortedPostsData } from '../client/lib/posts'
 
 type HomePageProps = {
-  articles: Array<Article>;
-  mkdArticles: Array<any>;
+  articles: Array<Article>
+  mkdArticles: Array<any>
   ctx: {
-    query: Record<string, never>;
-  };
-};
+    query: Record<string, never>
+  }
+}
 
 const Home: NextPage<HomePageProps> = ({ articles, mkdArticles }) => {
   return (
@@ -51,18 +51,18 @@ const Home: NextPage<HomePageProps> = ({ articles, mkdArticles }) => {
         </div>
       </UserContextProvider>
     </Layout>
-  );
-};
+  )
+}
 
 export const getServerSideProps = async ({
   query,
   req,
   res,
 }: GetServerSidePropsContext) => {
-  const articles = await api("articles", req, res);
-  const mkdArticles = getSortedPostsData();
-  console.log(articles, mkdArticles, "articles data");
-  return { props: { articles, mkdArticles, ctx: { query } } };
-};
+  const articles = await api('articles', req, res)
+  const mkdArticles = getSortedPostsData()
+  console.log(articles, mkdArticles, 'articles data')
+  return { props: { articles, mkdArticles, ctx: { query } } }
+}
 
-export default Home;
+export default Home

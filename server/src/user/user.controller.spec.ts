@@ -1,91 +1,91 @@
-import { Test } from "@nestjs/testing";
-import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
-import request from "supertest";
-import { MorganModule } from "nest-morgan";
-import { ACGuard } from "nest-access-control";
-import { JwtAuthGuard } from "../jwt/jwt.guard";
-import { ACLModule } from "../auth/acl.module";
-import { UserController } from "./user.controller";
-import { UserService } from "./user.service";
-import { JwtStrategy } from "../jwt/jwt.strategy";
+import { Test } from '@nestjs/testing'
+import { INestApplication, HttpStatus, ExecutionContext } from '@nestjs/common'
+import request from 'supertest'
+import { MorganModule } from 'nest-morgan'
+import { ACGuard } from 'nest-access-control'
+import { JwtAuthGuard } from '../jwt/jwt.guard'
+import { ACLModule } from '../auth/acl.module'
+import { UserController } from './user.controller'
+import { UserService } from './user.service'
+import { JwtStrategy } from '../jwt/jwt.strategy'
 
-const nonExistingId = "nonExistingId";
-const existingId = "existingId";
+const nonExistingId = 'nonExistingId'
+const existingId = 'existingId'
 const CREATE_INPUT = {
   createdAt: new Date(),
-  firstName: "exampleFirstName",
-  id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
+  firstName: 'exampleFirstName',
+  id: 'exampleId',
+  lastName: 'exampleLastName',
+  password: 'examplePassword',
+  roles: ['exampleRoles'],
   updatedAt: new Date(),
-  username: "exampleUsername",
-};
+  username: 'exampleUsername',
+}
 const CREATE_RESULT = {
   createdAt: new Date(),
-  firstName: "exampleFirstName",
-  id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
+  firstName: 'exampleFirstName',
+  id: 'exampleId',
+  lastName: 'exampleLastName',
+  password: 'examplePassword',
+  roles: ['exampleRoles'],
   updatedAt: new Date(),
-  username: "exampleUsername",
-};
+  username: 'exampleUsername',
+}
 const FIND_MANY_RESULT = [
   {
     createdAt: new Date(),
-    firstName: "exampleFirstName",
-    id: "exampleId",
-    lastName: "exampleLastName",
-    password: "examplePassword",
-    roles: ["exampleRoles"],
+    firstName: 'exampleFirstName',
+    id: 'exampleId',
+    lastName: 'exampleLastName',
+    password: 'examplePassword',
+    roles: ['exampleRoles'],
     updatedAt: new Date(),
-    username: "exampleUsername",
+    username: 'exampleUsername',
   },
-];
+]
 const FIND_ONE_RESULT = {
   createdAt: new Date(),
-  firstName: "exampleFirstName",
-  id: "exampleId",
-  lastName: "exampleLastName",
-  password: "examplePassword",
-  roles: ["exampleRoles"],
+  firstName: 'exampleFirstName',
+  id: 'exampleId',
+  lastName: 'exampleLastName',
+  password: 'examplePassword',
+  roles: ['exampleRoles'],
   updatedAt: new Date(),
-  username: "exampleUsername",
-};
+  username: 'exampleUsername',
+}
 
 const service = {
   create() {
-    return CREATE_RESULT;
+    return CREATE_RESULT
   },
   findMany: () => FIND_MANY_RESULT,
   findOne: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
-        return FIND_ONE_RESULT;
+        return FIND_ONE_RESULT
       case nonExistingId:
-        return null;
+        return null
     }
   },
-};
+}
 
-const userInfo = { name: "abc123", roles: ["user"] };
+const userInfo = { name: 'abc123', roles: ['user'] }
 const jwtAuthGuard = {
   canActivate: (context: ExecutionContext) => {
-    const request = context.switchToHttp().getRequest();
-    request.user = userInfo;
-    return true;
+    const request = context.switchToHttp().getRequest()
+    request.user = userInfo
+    return true
   },
-};
+}
 
 const acGuard = {
   canActivate: () => {
-    return true;
+    return true
   },
-};
+}
 
-describe("User", () => {
-  let app: INestApplication;
+describe('User', () => {
+  let app: INestApplication
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -108,27 +108,27 @@ describe("User", () => {
       .useValue(jwtAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
-      .compile();
+      .compile()
 
-    app = moduleRef.createNestApplication();
-    await app.init();
-  });
+    app = moduleRef.createNestApplication()
+    await app.init()
+  })
 
-  test("POST /api/users", async () => {
+  test('POST /api/users', async () => {
     await request(app.getHttpServer())
-      .post("/api/users")
+      .post('/api/users')
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-      });
-  });
+      })
+  })
 
-  test("GET /api/users", async () => {
+  test('GET /api/users', async () => {
     await request(app.getHttpServer())
-      .get("/api/users")
+      .get('/api/users')
       .expect(HttpStatus.OK)
       .expect([
         {
@@ -136,32 +136,32 @@ describe("User", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
-      ]);
-  });
+      ])
+  })
 
-  test("GET /api/users/:id non existing", async () => {
+  test('GET /api/users/:id non existing', async () => {
     await request(app.getHttpServer())
-      .get(`${"/api/users"}/${nonExistingId}`)
+      .get(`${'/api/users'}/${nonExistingId}`)
       .expect(404)
       .expect({
         statusCode: 404,
-        message: `No resource was found for {"${"id"}":"${nonExistingId}"}`,
-        error: "Not Found",
-      });
-  });
+        message: `No resource was found for {"${'id'}":"${nonExistingId}"}`,
+        error: 'Not Found',
+      })
+  })
 
-  test("GET /api/users/:id existing", async () => {
+  test('GET /api/users/:id existing', async () => {
     await request(app.getHttpServer())
-      .get(`${"/api/users"}/${existingId}`)
+      .get(`${'/api/users'}/${existingId}`)
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-      });
-  });
+      })
+  })
 
   afterAll(async () => {
-    await app.close();
-  });
-});
+    await app.close()
+  })
+})

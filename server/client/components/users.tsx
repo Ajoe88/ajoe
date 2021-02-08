@@ -1,7 +1,7 @@
-import { useUsersContext } from "../context/usersContext";
+import { useUsersContext } from '../context/usersContext'
 
 const Users = (): JSX.Element | null => {
-  const users = useUsersContext();
+  const users = useUsersContext()
   return users.length ? (
     <div>
       <h1>user list</h1>
@@ -11,7 +11,7 @@ const Users = (): JSX.Element | null => {
         ))}
       </ul>
     </div>
-  ) : null;
-};
+  ) : null
+}
 
-export default Users;
+export default Users

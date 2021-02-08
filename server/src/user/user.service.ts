@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "nestjs-prisma";
+import { Injectable } from '@nestjs/common'
+import { PrismaService } from 'nestjs-prisma'
 
 import {
   FindOneUserArgs,
@@ -8,10 +8,10 @@ import {
   UserUpdateArgs,
   UserDeleteArgs,
   Subset,
-} from "@prisma/client";
+} from '@prisma/client'
 
-import { PasswordService } from "../auth/password.service";
-import { transformStringFieldUpdateInput } from "../prisma.util";
+import { PasswordService } from '../auth/password.service'
+import { transformStringFieldUpdateInput } from '../prisma.util'
 
 @Injectable()
 export class UserService {
@@ -20,10 +20,10 @@ export class UserService {
     private readonly passwordService: PasswordService
   ) {}
   findMany<T extends FindManyUserArgs>(args: Subset<T, FindManyUserArgs>) {
-    return this.prisma.user.findMany(args);
+    return this.prisma.user.findMany(args)
   }
   findOne<T extends FindOneUserArgs>(args: Subset<T, FindOneUserArgs>) {
-    return this.prisma.user.findOne(args);
+    return this.prisma.user.findOne(args)
   }
   async create<T extends UserCreateArgs>(args: Subset<T, UserCreateArgs>) {
     return this.prisma.user.create<T>({
@@ -33,7 +33,7 @@ export class UserService {
         ...args.data,
         password: await this.passwordService.hash(args.data.password),
       },
-    });
+    })
   }
   async update<T extends UserUpdateArgs>(args: Subset<T, UserUpdateArgs>) {
     return this.prisma.user.update<T>({
@@ -49,9 +49,9 @@ export class UserService {
             (password) => this.passwordService.hash(password)
           )),
       },
-    });
+    })
   }
   delete<T extends UserDeleteArgs>(args: Subset<T, UserDeleteArgs>) {
-    return this.prisma.user.delete(args);
+    return this.prisma.user.delete(args)
   }
 }

@@ -1,7 +1,7 @@
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsDate } from "class-validator";
-import { Type } from "class-transformer";
+import { InputType, Field } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
+import { IsString, IsOptional, IsDate } from 'class-validator'
+import { Type } from 'class-transformer'
 @InputType()
 class ArticleWhereInput {
   @ApiProperty({
@@ -13,7 +13,7 @@ class ArticleWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  Authors?: string | null;
+  Authors?: string | null
   @ApiProperty({
     required: false,
     type: String,
@@ -23,7 +23,7 @@ class ArticleWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  content?: string;
+  content?: string
   @ApiProperty({
     required: false,
   })
@@ -33,7 +33,7 @@ class ArticleWhereInput {
   @Field(() => Date, {
     nullable: true,
   })
-  createdAt?: Date;
+  createdAt?: Date
   @ApiProperty({
     required: false,
     type: String,
@@ -43,7 +43,7 @@ class ArticleWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  id?: string;
+  id?: string
   @ApiProperty({
     required: false,
     type: String,
@@ -53,7 +53,7 @@ class ArticleWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  Title?: string;
+  Title?: string
   @ApiProperty({
     required: false,
   })
@@ -63,6 +63,6 @@ class ArticleWhereInput {
   @Field(() => Date, {
     nullable: true,
   })
-  updatedAt?: Date;
+  updatedAt?: Date
 }
-export { ArticleWhereInput };
+export { ArticleWhereInput }

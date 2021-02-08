@@ -1,7 +1,7 @@
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsString } from "class-validator";
-import { Type } from "class-transformer";
+import { InputType, Field } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
+import { IsDate, IsOptional, IsString } from 'class-validator'
+import { Type } from 'class-transformer'
 @InputType()
 class UserWhereInput {
   @ApiProperty({
@@ -13,7 +13,7 @@ class UserWhereInput {
   @Field(() => Date, {
     nullable: true,
   })
-  createdAt?: Date;
+  createdAt?: Date
   @ApiProperty({
     required: false,
     type: String,
@@ -23,7 +23,7 @@ class UserWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstName?: string | null;
+  firstName?: string | null
   @ApiProperty({
     required: false,
     type: String,
@@ -33,7 +33,7 @@ class UserWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  id?: string;
+  id?: string
   @ApiProperty({
     required: false,
     type: String,
@@ -43,7 +43,7 @@ class UserWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastName?: string | null;
+  lastName?: string | null
   @ApiProperty({
     required: false,
   })
@@ -53,7 +53,7 @@ class UserWhereInput {
   @Field(() => Date, {
     nullable: true,
   })
-  updatedAt?: Date;
+  updatedAt?: Date
   @ApiProperty({
     required: false,
     type: String,
@@ -63,6 +63,6 @@ class UserWhereInput {
   @Field(() => String, {
     nullable: true,
   })
-  username?: string;
+  username?: string
 }
-export { UserWhereInput };
+export { UserWhereInput }

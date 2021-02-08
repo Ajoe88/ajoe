@@ -1,30 +1,30 @@
-import { ConfigService } from "@nestjs/config";
-import { Test, TestingModule } from "@nestjs/testing";
-import { PasswordService } from "./password.service";
-import * as bcrypt from "bcrypt";
+import { ConfigService } from '@nestjs/config'
+import { Test, TestingModule } from '@nestjs/testing'
+import { PasswordService } from './password.service'
+import * as bcrypt from 'bcrypt'
 
-const EXAMPLE_PASSWORD = "examplePassword";
-const EXAMPLE_HASHED_PASSWORD = "exampleHashedPassword";
+const EXAMPLE_PASSWORD = 'examplePassword'
+const EXAMPLE_HASHED_PASSWORD = 'exampleHashedPassword'
 
-const EXAMPLE_SALT_OR_ROUNDS = 1;
+const EXAMPLE_SALT_OR_ROUNDS = 1
 
 const configServiceGetMock = jest.fn(() => {
-  return EXAMPLE_SALT_OR_ROUNDS;
-});
+  return EXAMPLE_SALT_OR_ROUNDS
+})
 
-jest.mock("bcrypt");
-
-//@ts-ignore
-bcrypt.hash.mockImplementation(async () => EXAMPLE_HASHED_PASSWORD);
+jest.mock('bcrypt')
 
 //@ts-ignore
-bcrypt.compare.mockImplementation(async () => true);
+bcrypt.hash.mockImplementation(async () => EXAMPLE_HASHED_PASSWORD)
 
-describe("PasswordService", () => {
-  let service: PasswordService;
+//@ts-ignore
+bcrypt.compare.mockImplementation(async () => true)
+
+describe('PasswordService', () => {
+  let service: PasswordService
 
   beforeEach(async () => {
-    jest.clearAllMocks();
+    jest.clearAllMocks()
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         PasswordService,
@@ -36,32 +36,32 @@ describe("PasswordService", () => {
         },
       ],
       imports: [],
-    }).compile();
+    }).compile()
 
-    service = module.get<PasswordService>(PasswordService);
-  });
+    service = module.get<PasswordService>(PasswordService)
+  })
 
-  it("should be defined", () => {
-    expect(service).toBeDefined();
-  });
+  it('should be defined', () => {
+    expect(service).toBeDefined()
+  })
 
-  it("should have salt defined", () => {
-    expect(service.salt).toEqual(EXAMPLE_SALT_OR_ROUNDS);
-  });
+  it('should have salt defined', () => {
+    expect(service.salt).toEqual(EXAMPLE_SALT_OR_ROUNDS)
+  })
 
-  it("should compare a password", async () => {
+  it('should compare a password', async () => {
     const args = {
       password: EXAMPLE_PASSWORD,
       hashedPassword: EXAMPLE_HASHED_PASSWORD,
-    };
+    }
     await expect(
       service.compare(args.password, args.hashedPassword)
-    ).resolves.toEqual(true);
-  });
+    ).resolves.toEqual(true)
+  })
 
-  it("should hash a password", async () => {
+  it('should hash a password', async () => {
     await expect(service.hash(EXAMPLE_PASSWORD)).resolves.toEqual(
       EXAMPLE_HASHED_PASSWORD
-    );
-  });
-});
+    )
+  })
+})

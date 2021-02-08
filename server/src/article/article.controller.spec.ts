@@ -1,85 +1,85 @@
-import { Test } from "@nestjs/testing";
-import { INestApplication, HttpStatus, ExecutionContext } from "@nestjs/common";
-import request from "supertest";
-import { MorganModule } from "nest-morgan";
-import { ACGuard } from "nest-access-control";
+import { Test } from '@nestjs/testing'
+import { INestApplication, HttpStatus, ExecutionContext } from '@nestjs/common'
+import request from 'supertest'
+import { MorganModule } from 'nest-morgan'
+import { ACGuard } from 'nest-access-control'
 // import { BasicAuthGuard } from "../auth/basicAuth.guard";
-import { ACLModule } from "../auth/acl.module";
-import { ArticleController } from "./article.controller";
-import { ArticleService } from "./article.service";
-import { JwtAuthGuard } from "../jwt/jwt.guard";
+import { ACLModule } from '../auth/acl.module'
+import { ArticleController } from './article.controller'
+import { ArticleService } from './article.service'
+import { JwtAuthGuard } from '../jwt/jwt.guard'
 
-const nonExistingId = "nonExistingId";
-const existingId = "existingId";
+const nonExistingId = 'nonExistingId'
+const existingId = 'existingId'
 const CREATE_INPUT = {
-  Authors: "exampleAuthors",
-  content: "exampleContent",
+  Authors: 'exampleAuthors',
+  content: 'exampleContent',
   createdAt: new Date(),
-  id: "exampleId",
-  Title: "exampleTitle",
+  id: 'exampleId',
+  Title: 'exampleTitle',
   updatedAt: new Date(),
-};
+}
 const CREATE_RESULT = {
-  Authors: "exampleAuthors",
-  content: "exampleContent",
+  Authors: 'exampleAuthors',
+  content: 'exampleContent',
   createdAt: new Date(),
-  id: "exampleId",
-  Title: "exampleTitle",
+  id: 'exampleId',
+  Title: 'exampleTitle',
   updatedAt: new Date(),
-};
+}
 const FIND_MANY_RESULT = [
   {
-    Authors: "exampleAuthors",
-    content: "exampleContent",
+    Authors: 'exampleAuthors',
+    content: 'exampleContent',
     createdAt: new Date(),
-    id: "exampleId",
-    Title: "exampleTitle",
+    id: 'exampleId',
+    Title: 'exampleTitle',
     updatedAt: new Date(),
   },
-];
+]
 const FIND_ONE_RESULT = {
-  Authors: "exampleAuthors",
-  content: "exampleContent",
+  Authors: 'exampleAuthors',
+  content: 'exampleContent',
   createdAt: new Date(),
-  id: "exampleId",
-  Title: "exampleTitle",
+  id: 'exampleId',
+  Title: 'exampleTitle',
   updatedAt: new Date(),
-};
+}
 
 const service = {
   create() {
-    return CREATE_RESULT;
+    return CREATE_RESULT
   },
   findMany: () => FIND_MANY_RESULT,
   findOne: ({ where }: { where: { id: string } }) => {
     switch (where.id) {
       case existingId:
-        return FIND_ONE_RESULT;
+        return FIND_ONE_RESULT
       case nonExistingId:
-        return null;
+        return null
     }
   },
-};
+}
 
 const jwtAuthGuard = {
   canActivate: (context: ExecutionContext) => {
-    const req = context.switchToHttp().getRequest();
+    const req = context.switchToHttp().getRequest()
     req.user = {
-      roles: ["user"],
-      username: "user"
-    };
-    return true;
-  }
-};
+      roles: ['user'],
+      username: 'user',
+    }
+    return true
+  },
+}
 
 const acGuard = {
   canActivate: () => {
-    return true;
+    return true
   },
-};
+}
 
-describe("Article", () => {
-  let app: INestApplication;
+describe('Article', () => {
+  let app: INestApplication
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -87,7 +87,7 @@ describe("Article", () => {
         {
           provide: ArticleService,
           useValue: service,
-        }
+        },
       ],
       controllers: [ArticleController],
       imports: [MorganModule.forRoot(), ACLModule],
@@ -96,27 +96,27 @@ describe("Article", () => {
       .useValue(jwtAuthGuard)
       .overrideGuard(ACGuard)
       .useValue(acGuard)
-      .compile();
+      .compile()
 
-    app = moduleRef.createNestApplication();
-    await app.init();
-  });
+    app = moduleRef.createNestApplication()
+    await app.init()
+  })
 
-  test("POST /api/articles", async () => {
+  test('POST /api/articles', async () => {
     await request(app.getHttpServer())
-      .post("/api/articles")
+      .post('/api/articles')
       .send(CREATE_INPUT)
       .expect(HttpStatus.CREATED)
       .expect({
         ...CREATE_RESULT,
         createdAt: CREATE_RESULT.createdAt.toISOString(),
         updatedAt: CREATE_RESULT.updatedAt.toISOString(),
-      });
-  });
+      })
+  })
 
-  test("GET /api/articles", async () => {
+  test('GET /api/articles', async () => {
     await request(app.getHttpServer())
-      .get("/api/articles")
+      .get('/api/articles')
       .expect(HttpStatus.OK)
       .expect([
         {
@@ -124,32 +124,32 @@ describe("Article", () => {
           createdAt: FIND_MANY_RESULT[0].createdAt.toISOString(),
           updatedAt: FIND_MANY_RESULT[0].updatedAt.toISOString(),
         },
-      ]);
-  });
+      ])
+  })
 
-  test("GET /api/articles/:id non existing", async () => {
+  test('GET /api/articles/:id non existing', async () => {
     await request(app.getHttpServer())
-      .get(`${"/api/articles"}/${nonExistingId}`)
+      .get(`${'/api/articles'}/${nonExistingId}`)
       .expect(404)
       .expect({
         statusCode: 404,
-        message: `No resource was found for {"${"id"}":"${nonExistingId}"}`,
-        error: "Not Found",
-      });
-  });
+        message: `No resource was found for {"${'id'}":"${nonExistingId}"}`,
+        error: 'Not Found',
+      })
+  })
 
-  test("GET /articles/:id existing", async () => {
+  test('GET /articles/:id existing', async () => {
     await request(app.getHttpServer())
-      .get(`${"/api/articles"}/${existingId}`)
+      .get(`${'/api/articles'}/${existingId}`)
       .expect(HttpStatus.OK)
       .expect({
         ...FIND_ONE_RESULT,
         createdAt: FIND_ONE_RESULT.createdAt.toISOString(),
         updatedAt: FIND_ONE_RESULT.updatedAt.toISOString(),
-      });
-  });
+      })
+  })
 
   afterAll(async () => {
-    await app.close();
-  });
-});
+    await app.close()
+  })
+})

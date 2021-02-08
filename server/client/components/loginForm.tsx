@@ -1,43 +1,48 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import Link from 'next/link.js';
-import * as Yup from "yup";
+import React from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import Link from 'next/link.js'
+import * as Yup from 'yup'
 
 export type LoginFormValues = {
-  username: string,
-  password: string,
-};
+  username: string
+  password: string
+}
 
-export type onSubmitFunction = (values: LoginFormValues) => Promise<void>;
+export type onSubmitFunction = (values: LoginFormValues) => Promise<void>
 export type LoginFormProps = {
-  isRegister: boolean,
+  isRegister: boolean
   onSubmit: onSubmitFunction
-};
+}
 
-const authLink = (isRegister: boolean) => (<Link href={isRegister ? '/login' : '/register'}>
-  <a className="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">
-    {isRegister ? 'Login' : 'Register'}
-  </a>
-</Link>)
+const authLink = (isRegister: boolean) => (
+  <Link href={isRegister ? '/login' : '/register'}>
+    <a className="inline-block right-0 align-baseline font-light text-sm text-500 hover:text-red-400">
+      {isRegister ? 'Login' : 'Register'}
+    </a>
+  </Link>
+)
 
-const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
+const LoginForm = ({ isRegister = false, onSubmit }: LoginFormProps) => (
   <div>
     <Formik
-      initialValues={{ username: "", password: "" }}
+      initialValues={{ username: '', password: '' }}
       validationSchema={Yup.object({
         username: Yup.string()
-          .max(15, "Must be 15 characters or less")
-          .required("Required"),
-        password: Yup.string().required("Required"),
-        passwordConfirmation: isRegister ? 
-          Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match') : 
-          Yup.string().nullable()
+          .max(15, 'Must be 15 characters or less')
+          .required('Required'),
+        password: Yup.string().required('Required'),
+        passwordConfirmation: isRegister
+          ? Yup.string().oneOf(
+              [Yup.ref('password'), null],
+              'Passwords must match'
+            )
+          : Yup.string().nullable(),
       })}
       onSubmit={async (values, { setSubmitting }) => {
         if (onSubmit) {
           onSubmit(values)
         }
-        setSubmitting(false);
+        setSubmitting(false)
       }}
     >
       {() => (
@@ -71,19 +76,23 @@ const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
                     />
                     <ErrorMessage name="password" component="div" />
                   </div>
-                  { isRegister &&
+                  {isRegister && (
                     <div className="mt-2">
-                    <label className="block  text-sm text-white">
-                      Password Confirmation
-                    </label>
-                    <Field
-                      className="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
-                      type="password"
-                      name="passwordConfirmation"
-                      placeholder="passwordConfirmation"
-                    />
-                    <ErrorMessage name="passwordConfirmation" component="div" />
-                  </div>}
+                      <label className="block  text-sm text-white">
+                        Password Confirmation
+                      </label>
+                      <Field
+                        className="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+                        type="password"
+                        name="passwordConfirmation"
+                        placeholder="passwordConfirmation"
+                      />
+                      <ErrorMessage
+                        name="passwordConfirmation"
+                        component="div"
+                      />
+                    </div>
+                  )}
 
                   <div className="mt-4 items-center flex justify-between">
                     <button
@@ -99,9 +108,7 @@ const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
                       Forget Password?
                     </a>
                   </div>
-                  <div className="text-center">
-                    {authLink(isRegister)}
-                  </div>
+                  <div className="text-center">{authLink(isRegister)}</div>
                 </div>
               </Form>
             </div>
@@ -110,6 +117,6 @@ const LoginForm = ({isRegister = false, onSubmit}: LoginFormProps) => (
       )}
     </Formik>
   </div>
-);
+)
 
-export default LoginForm;
+export default LoginForm

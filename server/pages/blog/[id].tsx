@@ -1,10 +1,10 @@
-import React from "react";
-import { NextPage, GetServerSidePropsContext } from "next";
+import React from 'react'
+import { NextPage, GetServerSidePropsContext } from 'next'
 import Head from 'next/head'
 
-import api from "../../client/api";
+import api from '../../client/api'
 import Layout from '../../client/components/layout'
-import { Article } from "../../src/article/Article";
+import { Article } from '../../src/article/Article'
 import Date from '../../client/lib/date'
 import utilStyles from '../../client/styles/utils.module.css'
 
@@ -26,14 +26,16 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
         <pre dangerouslySetInnerHTML={{ __html: article.content }} />
       </article>
     </Layout>
-  );
+  )
 }
 
 export const getServerSideProps = async ({
-  query, req, res
+  query,
+  req,
+  res,
 }: GetServerSidePropsContext) => {
-  const article = await api(`articles/${query.id}`, req, res);
-  return { props: { article } };
-};
+  const article = await api(`articles/${query.id}`, req, res)
+  return { props: { article } }
+}
 
-export default ArticlePage;
+export default ArticlePage

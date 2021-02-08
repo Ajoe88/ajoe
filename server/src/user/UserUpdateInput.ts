@@ -1,6 +1,6 @@
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional } from "class-validator";
+import { InputType, Field } from '@nestjs/graphql'
+import { ApiProperty } from '@nestjs/swagger'
+import { IsString, IsOptional } from 'class-validator'
 @InputType()
 class UserUpdateInput {
   @ApiProperty({
@@ -12,7 +12,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  firstName?: string | null;
+  firstName?: string | null
   @ApiProperty({
     required: false,
     type: String,
@@ -22,7 +22,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  lastName?: string | null;
+  lastName?: string | null
   @ApiProperty({
     required: false,
     type: String,
@@ -32,7 +32,7 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  password?: string;
+  password?: string
   @ApiProperty({
     required: false,
     type: [String],
@@ -44,7 +44,7 @@ class UserUpdateInput {
   @Field(() => [String], {
     nullable: true,
   })
-  roles?: Array<string>;
+  roles?: Array<string>
   @ApiProperty({
     required: false,
     type: String,
@@ -54,6 +54,6 @@ class UserUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
-  username?: string;
+  username?: string
 }
-export { UserUpdateInput };
+export { UserUpdateInput }
