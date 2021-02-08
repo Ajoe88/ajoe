@@ -3,12 +3,12 @@ import { NextPage, GetServerSidePropsContext } from "next";
 import Head from "next/head";
 import Link from "next/link.js";
 
-import api from "../api";
-import { Article } from "../../src/article/Article";
-import Layout from "../components/layout";
-import Users from "../components/users";
-import { UserContextProvider } from "../context/usersContext";
-import { getSortedPostsData } from "../lib/posts";
+import api from "../client/api";
+import { Article } from "../src/article/Article";
+import Layout from "../client/components/layout";
+import Users from "../client/components/users";
+import { UserContextProvider } from "../client/context/usersContext";
+import { getSortedPostsData } from "../client/lib/posts";
 
 type HomePageProps = {
   articles: Array<Article>;

@@ -45,5 +45,6 @@ EXPOSE 3000
 # Make server to serve admin built files
 ENV SERVE_STATIC_ROOT_PATH=admin/build
 
+WORKDIR /app/server
 # Run server
-CMD [ "node", "server/dist/main"]
+CMD [ "node", "/dist/main"]

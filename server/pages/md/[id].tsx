@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
-import Date from '../../lib/date'
-import utilStyles from '../../styles/utils.module.css'
+import Layout from '../../client/components/layout'
+import { getAllPostIds, getPostData } from '../../client/lib/posts'
+import Date from '../../client/lib/date'
+import utilStyles from '../../client/styles/utils.module.css'
 
 type Post = {
   postData: {

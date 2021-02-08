@@ -1,5 +1,5 @@
 import nookies from 'nookies';
-import LoginForm, { LoginFormValues } from '../components/loginForm'
+import LoginForm, { LoginFormValues } from '../client/components/loginForm'
 import { useRouter } from 'next/router'
 
 const Login = () => {

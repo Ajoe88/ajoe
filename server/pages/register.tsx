@@ -1,4 +1,4 @@
-import LoginForm from '../components/loginForm'
+import LoginForm from '../client/components/loginForm'
 import { useRouter } from 'next/router'
 
 const Regsiter = () => {
