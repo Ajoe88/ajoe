@@ -6,7 +6,7 @@
     "start:local": "npm run docker:db & nest start",
     "start:watch": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "build": "nest build",
+    "build": "next build && nest build",
     "build:next": "next build",
     "test": "jest --config ./jest.config.js",
     "seed": "ts-node scripts/seed.ts",
