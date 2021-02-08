@@ -20,6 +20,7 @@ admin/.gitignore
 admin/README.md
 admin/LICENSE
 admin/.vscode
+admin/.prettier
 admin/.prettierignore
 admin/.eslintrc.js
 
@@ -34,5 +35,6 @@ server/.gitignore
 server/README.md
 server/LICENSE
 server/.vscode
+server/.prettier
 server/.prettierignore
 server/.eslintrc.js

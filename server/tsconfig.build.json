@@ -1,4 +1,8 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "prisma", "test", "dist", "**/*spec.ts", "admin"]
+  "compilerOptions": {
+    "noEmit": false,
+    "incremental": true
+  },
+  "exclude": ["node_modules", "prisma", "test", "dist", "coverage", "**/*spec.ts", "admin"]
 }
