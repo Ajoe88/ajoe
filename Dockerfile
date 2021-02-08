@@ -47,4 +47,4 @@ ENV SERVE_STATIC_ROOT_PATH=admin/build
 
 WORKDIR /app/server
 # Run server
-CMD [ "node", "/dist/main"]
+CMD [ "node", "/dist/src/main"]
