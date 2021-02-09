@@ -6,7 +6,7 @@ services:
       args:
         NPM_LOG_LEVEL: verbose
     ports:
-      - "${SERVER_PORT}:80"
+      - "${SERVER_PORT}:3000"
     environment:
       POSTGRESQL_URL: "postgres://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@db:5432"
       BCRYPT_SALT: "${BCRYPT_SALT}"
@@ -16,7 +16,7 @@ services:
     build:
       context: .
       args:
-        NPM_LOG_LEVEL: notice
+        NPM_LOG_LEVEL: verbose
     command: npm run db:init
     working_dir: /app/server
     environment:

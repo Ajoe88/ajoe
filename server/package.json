@@ -8,6 +8,7 @@
     "start:debug": "nest start --debug --watch",
     "build": "next build && nest build",
     "build:next": "next build",
+    "build:css": "tailwindcss build -o public/tailwind.css",
     "test": "jest --config ./jest.config.js",
     "seed": "ts-node scripts/seed.ts",
     "db:migrate-save": "prisma --experimental migrate save",
