@@ -1,44 +1,67 @@
 # By default, use node 14.15.3 as the base image
 ARG IMAGE=node@sha256:bef791f512bb4c3051a1210d7fbd58206538f41eea9b966031abc8a7453308fe
 
-FROM $IMAGE
+FROM $IMAGE as base
+RUN apk add python make gcc g++
 
-# ENV NODE_ENV=production
-# Define how verbose should npm install be
-ARG NPM_LOG_LEVEL=verbose
-# Hide Open Collective message from install logs
-ENV OPENCOLLECTIVE_HIDE=1
-# Hiden NPM security message from install logs
-ENV NPM_CONFIG_AUDIT=false
-# Hide NPM funding message from install logs
-ENV NPM_CONFIG_FUND=false
+# help us to install and build all dependencies in a separate container
+FROM base as development
+
+WORKDIR /app
 
 # Update npm to version 7
-RUN npm i -g npm@7.3.0
+RUN npm i -g npm@7.5.2
+
+# Install dependencies
+# RUN cd common; npm i ;
+
+# Copy package.json package-lock.json files to specifiying directory
+COPY server/package*.json ./server/
+COPY admin/package*.json ./admin/
+
+ARG NPM_LOG_LEVEL=verbose
+RUN npm config set registry https://registry.npm.taobao.org;
+# Install dependencies
+RUN cd server; npm ci --only=development --loglevel=$NPM_LOG_LEVEL;
+RUN cd admin; npm ci --only=development --loglevel=$NPM_LOG_LEVEL;
+
+# Copy Prisma schema
+COPY server/prisma/schema.prisma ./server/prisma/
+# Generate Prisma client
+RUN cd server; npm run prisma:generate;
+
+COPY . .
+
+RUN set -e; (cd server; npm run build) 
+RUN set -e; (cd admin; npm run build)
+
+FROM base as production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
 
 # Set the working direcotry
 WORKDIR /app
 
-# Copy files specifiying dependencies
-COPY server/package*.json  ./server/
-COPY admin/package*.json  ./admin/
+# Update npm to version 7
+RUN npm i -g npm@7.5.2
 
-# Install dependencies
-RUN cd server; npm ci --loglevel=$NPM_LOG_LEVEL;
-RUN cd admin; npm ci --loglevel=$NPM_LOG_LEVEL;
-
-# Copy Prisma schema
-COPY server/prisma/schema.prisma ./server/prisma/
-
-# Generate Prisma client
-RUN cd server; npm run prisma:generate;
+ARG NPM_LOG_LEVEL=verbose
+RUN npm config set registry https://registry.npm.taobao.org;
+# Copy package.json package-lock.json files to specifiying directory
+COPY server/package*.json server/
+COPY admin/package*.json admin/
 
 # Copy all the files
 COPY . .
 
-# Build code
-RUN set -e; (cd server; npm run build) 
-RUN set -e; (cd admin; npm run build)
+COPY --from=development /app/admin/build admin/
+COPY --from=development /app/server/dist server/
+
+# Install dependencies
+RUN cd server; npm ci --only=production --loglevel=$NPM_LOG_LEVEL;
+RUN cd admin; npm ci --only=production --loglevel=$NPM_LOG_LEVEL;
+
 # Expose the port the server listens to
 EXPOSE 3000
 

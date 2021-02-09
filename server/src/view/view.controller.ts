@@ -2,7 +2,7 @@ import { Controller, Get, Res, Req, Next } from '@nestjs/common'
 import { NextFunction, Request, Response } from 'express'
 
 import { ViewService } from './view.service'
-
+import routes from '../routers'
 @Controller('/')
 export class ViewController {
   constructor(private viewService: ViewService) {}
@@ -14,11 +14,12 @@ export class ViewController {
     @Next() next: NextFunction
   ): void {
     const handle = this.viewService.getNextServer().getRequestHandler()
-    if (
-      req.path.startsWith('/admin') ||
-      req.path.startsWith('/graphql') ||
-      req.path.startsWith('/swagger')
-    ) {
+
+    const isReqMatch = routes
+      .map((route) => route.serveRoot)
+      .some((route) => req.path.startsWith(route))
+
+    if (isReqMatch) {
       next()
       return
     }

@@ -1,4 +1,5 @@
 import App, { AppProps, AppContext } from 'next/app'
+
 import 'tailwindcss/tailwind.css'
 import '../client/styles/global.css'
 import '../client/styles/typora-mo-theme-1.0.3/mo-dark.css'

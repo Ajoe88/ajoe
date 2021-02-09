@@ -5,14 +5,9 @@ import {
   ServeStaticModuleOptions,
   ServeStaticModuleOptionsFactory,
 } from '@nestjs/serve-static'
+import routers from './routers'
 
 const SERVE_STATIC_ROOT_PATH_VAR = 'SERVE_STATIC_ROOT_PATH'
-const DEFAULT_STATIC_MODULE_OPTIONS_LIST: ServeStaticModuleOptions[] = [
-  {
-    serveRoot: '/swagger',
-    rootPath: path.join(__dirname, 'swagger'),
-  },
-]
 
 @Injectable()
 export class ServeStaticOptionsService
@@ -25,18 +20,23 @@ export class ServeStaticOptionsService
     const serveStaticRootPath = this.configService.get(
       SERVE_STATIC_ROOT_PATH_VAR
     )
+
+    let updatedRouters = routers.filter(
+      (route) => route.serveRoot != '/graphql'
+    )
+
     if (serveStaticRootPath) {
-      const resolvedPath = path.resolve(serveStaticRootPath)
-      this.logger.log(`Serving admin static files from ${resolvedPath}`)
-      return [
-        ...DEFAULT_STATIC_MODULE_OPTIONS_LIST,
-        {
-          rootPath: resolvedPath,
-          serveRoot: '/admin',
-          exclude: ['/api', '/graphql'],
-        },
-      ]
+      updatedRouters = routers.map((route) => {
+        if (route.serveRoot === '/admin') {
+          route.rootPath = path.resolve(serveStaticRootPath)
+        }
+        return route
+      })
+      this.logger.log(
+        `Serving static files from:,  ${JSON.stringify(updatedRouters)}}`
+      )
     }
-    return DEFAULT_STATIC_MODULE_OPTIONS_LIST
+
+    return [...updatedRouters]
   }
 }
