@@ -2,6 +2,7 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { parseCookies } from 'nookies'
 import redirect from './redirect'
 
+const DOMAIN = 'http://ajoe.net:88'
 const setHeaders = (token: string): Headers => {
   const headers = new Headers()
   headers.append('Accept', 'application/json')
@@ -34,7 +35,7 @@ export default async function apiFetch<T>(
 
   const headers = setHeaders(token)
 
-  return await fetch(`http://localhost:3000/api/${apiPath}`, {
+  return await fetch(`${DOMAIN}/api/${apiPath}`, {
     headers,
     method,
     credentials: 'include',
