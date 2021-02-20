@@ -12,6 +12,7 @@
   font-weight: 800;
   letter-spacing: -0.05rem;
   margin: 1rem 0;
+  text-align: center;
 }
 
 .headingLg {
@@ -23,6 +24,16 @@
 .headingMd {
   font-size: 1.2rem;
   line-height: 1.5;
+}
+
+.articleBody {
+  background-color: rgba(000, 000, 000, 0.2);
+  padding: 1rem;
+}
+
+.pinkCircle {
+  border-radius: 9999px;
+  background-color: palevioletred;
 }
 
 .borderCircle {
@@ -48,5 +59,6 @@
 }
 
 .lightText {
-  color: #666;
+  color: #ccc;
+  text-align: right;
 }

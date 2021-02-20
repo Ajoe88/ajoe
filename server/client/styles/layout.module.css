@@ -1,7 +1,20 @@
 .container {
-  max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
+  max-width: 100%;
+  padding: 0 2rem;
+  z-index: 10;
+  margin: 3rem auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.background-random {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
 .header {
@@ -22,4 +35,13 @@
 
 .backToHome {
   margin: 3rem 0 0;
+}
+
+@media (min-width: 640px) {
+  .background-random {
+    background-position: center center;
+  }
+  .container {
+    max-width: 60%;
+  }
 }

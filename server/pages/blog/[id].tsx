@@ -23,7 +23,10 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
         <div className={utilStyles.lightText}>
           <Date dateString={article.createdAt.toString()} />
         </div>
-        <pre dangerouslySetInnerHTML={{ __html: article.content }} />
+        <pre
+          className={utilStyles.articleBody}
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
       </article>
     </Layout>
   )

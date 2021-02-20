@@ -8,7 +8,6 @@ const getUsers = () => {
 }
 
 export const useUsers = () => {
-  const state = useAsync(getUsers, emptyUsers) // 🤔 new array on every render?
-  console.log(state)
+  const state = useAsync(getUsers, emptyUsers)
   return Array.isArray(state[0]) ? state[0] : []
 }

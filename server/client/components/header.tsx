@@ -1,50 +1,43 @@
-const Header = () => (
-  <header>
-    <style jsx>{`
-      nav ul {
-        display: flex;
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        font-size: 150%;
-      }
-      nav ul li {
-        padding-right: 0.5rem;
-        color: #666;
-        font-feature-settings: 'smcp', 'c2sc';
-        font-variant-caps: all-small-caps;
-      }
-      nav ul li a {
-        text-decoration: none;
-      }
-      nav ul li a.selected {
-        font-weight: bolder;
-        text-decoration: underline;
-      }
-      a {
-        color: #007acc;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-    `}</style>
-    <h1>Joe.Dev</h1>
-    <nav>
-      <ul>
-        <li>
-          <a className="" href="/">
-            HOME
+import Link from 'next/link'
+
+import styles from '../styles/layout.module.css'
+import utilStyles from '../styles/utils.module.css'
+
+type HeaderProps = {
+  home?: boolean
+  name: string
+}
+const MHeader = ({ home, name }: HeaderProps) => (
+  <header className={styles.header}>
+    {home ? (
+      <>
+        <img
+          src="/images/profile.jpg"
+          className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+          alt={name}
+        />
+        <h1 className={utilStyles.heading2Xl}>{name}</h1>
+      </>
+    ) : (
+      <>
+        <Link href="/">
+          <a>
+            <img
+              src="/images/profile.jpg"
+              className={`${styles.headerImage} ${utilStyles.borderCircle}`}
+              alt={name}
+            />
           </a>
-        </li>
-        <li>
-          <a className="" href="/blog">
-            ARTICLES
-          </a>
-        </li>
-      </ul>
-    </nav>
+        </Link>
+        <h2 className={utilStyles.headingLg}>
+          <Link href="/">
+            <a className={utilStyles.colorInherit}>{name}</a>
+          </Link>
+          <span className={utilStyles.pinkCircle}></span>
+        </h2>
+      </>
+    )}
   </header>
 )
 
-export default Header
+export default MHeader
