@@ -4,8 +4,6 @@ import Nav from './nav'
 import BackgroundImage from './bg'
 import BackToHome from './back'
 
-import styles from '../styles/layout.module.css'
-
 type LayoutProps = {
   home?: boolean
   children?: any
@@ -21,7 +19,7 @@ const { name, title, description } = siteConfiguration
 export default function Layout({ children, home }: LayoutProps) {
   return (
     <div>
-      <div className={styles.container}>
+      <div className="container max-w-md mx-auto">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content={description} />
@@ -34,7 +32,7 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="og:title" content={title} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        <MHeader home={home} name={name} />
+        <MHeader name={name} />
         <Nav />
         <main>{children}</main>
         <BackToHome home={home} />

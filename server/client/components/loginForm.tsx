@@ -52,7 +52,7 @@ const LoginForm = ({ isRegister = false, onSubmit }: LoginFormProps) => (
             <div className="leading-loose">
               <Form className="max-w-sm m-4 p-10 bg-white bg-opacity-25 rounded shadow-xl">
                 <div className="font-sans login bg-cover">
-                  <p className="text-white font-medium text-center text-lg font-bold">
+                  <p className="text-white font-medium text-center text-lg">
                     LOGIN
                   </p>
                   <div className="">

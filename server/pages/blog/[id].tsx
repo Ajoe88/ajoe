@@ -6,7 +6,6 @@ import api from '../../client/api'
 import Layout from '../../client/components/layout'
 import { Article } from '../../src/article/Article'
 import Date from '../../client/lib/date'
-import utilStyles from '../../client/styles/utils.module.css'
 
 type ArticlePageProps = {
   article: Article
@@ -19,12 +18,12 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
         <title>{article.Title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{article.Title}</h1>
-        <div className={utilStyles.lightText}>
+        <h1 className="">{article.Title}</h1>
+        <div className="">
           <Date dateString={article.createdAt.toString()} />
         </div>
         <pre
-          className={utilStyles.articleBody}
+          className=""
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
       </article>
