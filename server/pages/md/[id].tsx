@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Layout from '../../client/components/layout'
 import { getAllPostIds, getPostData } from '../../client/lib/posts'
 import Date from '../../client/lib/date'
-import utilStyles from '../../client/styles/utils.module.css'
 
 type Post = {
   postData: {
@@ -26,12 +25,12 @@ export default function Post({ postData }: Post) {
         <title>{postData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
-        <div className={utilStyles.lightText}>
+        <h1 className="text-3xl text-center my-10">{postData.title}</h1>
+        <div className="markdown text-right my-2 text-xs">
           <Date dateString={postData.date.toString()} />
         </div>
-        <div
-          className={utilStyles.articleBody}
+        <section
+          className="bg-gray-900 bg-opacity-75 rounded-md p-6"
           dangerouslySetInnerHTML={{ __html: postData.contentHtml }}
         />
       </article>

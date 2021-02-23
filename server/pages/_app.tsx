@@ -1,8 +1,8 @@
 import App, { AppProps, AppContext } from 'next/app'
 
 import '../client/styles/global.css'
-import 'tailwindcss/tailwind.css'
 // import '../client/styles/typora-mo-theme-1.0.3/mo-dark.css'
+import '../client/styles//tailwind.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />

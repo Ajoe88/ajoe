@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import MHeader from './header'
-import Nav from './nav'
+import React from 'react'
+import Header from './header'
 import BackgroundImage from './bg'
 import BackToHome from './back'
+import Footer from './footer'
+import useScrollPosition from '../hooks/useScrollPosition'
 
 type LayoutProps = {
   home?: boolean
@@ -17,9 +19,14 @@ const siteConfiguration = {
 const { name, title, description } = siteConfiguration
 
 export default function Layout({ children, home }: LayoutProps) {
+  const scrollPos = useScrollPosition()
   return (
-    <div>
-      <div className="container max-w-md mx-auto">
+    <div
+      className={`container-wrapper w-full h-full text-gray-500 ${
+        scrollPos > 50 ? 'c-scroll' : ''
+      }`}
+    >
+      <div className="container w-full z-10 absolute inset-x-0">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content={description} />
@@ -32,11 +39,12 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="og:title" content={title} />
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
-        <MHeader name={name} />
-        <Nav />
-        <main>{children}</main>
+        <Header name={name} />
+        <main className="mx-auto pt-0 p-10 max-w-5xl">{children}</main>
         <BackToHome home={home} />
       </div>
+      <Footer />
+
       <BackgroundImage />
     </div>
   )
