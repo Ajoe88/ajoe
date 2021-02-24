@@ -20,13 +20,15 @@ const { name, title, description } = siteConfiguration
 
 export default function Layout({ children, home }: LayoutProps) {
   const scrollPos = useScrollPosition()
+  console.log(scrollPos, 'scrollPos')
   return (
     <div
-      className={`container-wrapper w-full h-full text-gray-500 ${
-        scrollPos > 50 ? 'c-scroll' : ''
-      }`}
+      className={
+        'container-wrapper w-full h-full text-gray-500 ' +
+        (scrollPos > 240 ? 'a-scroll' : '')
+      }
     >
-      <div className="container w-full z-10 absolute inset-x-0">
+      <div className="w-full z-10 absolute inset-x-0">
         <Head>
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content={description} />
@@ -40,11 +42,10 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Header name={name} />
-        <main className="mx-auto pt-0 p-10 max-w-5xl">{children}</main>
+        <main className="mx-auto pt-0 p-2 sm:p-10 max-w-5xl">{children}</main>
         <BackToHome home={home} />
+        <Footer />
       </div>
-      <Footer />
-
       <BackgroundImage />
     </div>
   )

@@ -3,7 +3,7 @@ import { NextPage, GetServerSidePropsContext } from 'next'
 import Link from 'next/link.js'
 
 import api from '../api'
-import { getSortedPostsData } from '../lib/posts'
+// import { getSortedPostsData } from '../lib/posts'
 import { Article } from '../../src/article/Article'
 
 type ArticleSectionProps = {

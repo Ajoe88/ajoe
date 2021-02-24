@@ -1,5 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.scroll {
+
+.a-scroll .a-header {
+  @apply flex fixed bg-black bg-opacity-60 mt-0;
+}
+
+.a-scroll .logo {
+  @apply mx-1 sm:mr-4 md:mr-10;
+}
+
+.a-scroll .logo img {
+  @apply w-14;
+}
+
+.a-scroll h2 a {
+  @apply text-xl;
+}
+
+.a-scroll nav ul {
+  @apply my-4;
+}
+
+.a-scroll h2 svg {
+  @apply w-3;
+}
+
+.a-scroll main {
+  @apply mt-10;
 }

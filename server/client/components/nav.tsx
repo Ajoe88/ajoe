@@ -2,8 +2,20 @@ import Link from 'next/link'
 
 const Nav = () => (
   <nav className="">
-    <ul className="flex mx-auto my-10 max-w-96 space-x-6 justify-center">
+    <ul className="flex mx-auto my-10 space-x-0 sm:space-x-8 md:space-x-10 justify-center">
       {[
+        {
+          name: '.NET',
+          subTitle: 'Internet相关',
+          link: '/net',
+          svgPath: (
+            <path
+              fillRule="evenodd"
+              d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          ),
+        },
         {
           name: 'BLOG',
           subTitle: '文章千古事，得失寸尺心',
@@ -37,34 +49,22 @@ const Nav = () => (
             />
           ),
         },
-        {
-          name: '.NET',
-          subTitle: 'Internet相关',
-          link: '/net',
-          svgPath: (
-            <path
-              fillRule="evenodd"
-              d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          ),
-        },
       ].map((navItem) => (
         <li
           key={navItem.name}
           className="text-center transition-all transform rounded hover:scale-125 hover:bg-gray-700 hover:bg-opacity-30"
         >
           <Link href={navItem.link}>
-            <a className="inline-block p-2">
+            <a className="nav-item inline-block p-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                className="w-10 m-auto"
+                className="w-6 md:w-10 m-auto"
               >
                 {navItem.svgPath}
               </svg>
-              <div className="">
+              <div className="c-titles">
                 <h2
                   className={`font-extrabold ${
                     navItem.name === '.NET' ? 'text-pink-800' : ''
@@ -72,7 +72,7 @@ const Nav = () => (
                 >
                   {navItem.name}
                 </h2>
-                <h3 className="hidden wd">{navItem.subTitle}</h3>
+                <h3 className="hidden">{navItem.subTitle}</h3>
               </div>
             </a>
           </Link>

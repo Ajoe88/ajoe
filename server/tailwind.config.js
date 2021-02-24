@@ -10,6 +10,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundOpacity: ['active'],
+      rotate: ['group-hover'],
     },
   },
   plugins: [],

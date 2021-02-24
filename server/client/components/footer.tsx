@@ -1,6 +1,6 @@
 import Link from 'next/link'
 const Footer = () => (
-  <div className="flex flex-col items-center space-y-1 w-full absolute bottom-2">
+  <div className="flex flex-col items-center space-y-1 w-full mt-10 mb-2">
     {[
       { name: 'ajoe.net', link: 'http://joe.net' },
       { name: '粤ICP备2021021107号-1', link: 'https://beian.miit.gov.cn' },
