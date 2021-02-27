@@ -54,7 +54,7 @@
     "nest-access-control": "^2.0.2",
     "nest-morgan": "^1.0.1",
     "nestjs-prisma": "^0.7.0",
-    "next": "^10.0.0",
+    "next": "^10.0.3",
     "node-sass": "^5.0.0",
     "nookies": "^2.5.2",
     "normalize-path": "^3.0.0",
