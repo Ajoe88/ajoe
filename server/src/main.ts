@@ -10,7 +10,7 @@ import {
   // eslint-disable-next-line
 } from './swagger'
 
-const { PORT = 3000 } = process.env
+const { PORT = 3000, NODE_ENV } = process.env
 
 async function main() {
   const app = await NestFactory.create(AppModule, { cors: true })
@@ -27,7 +27,7 @@ async function main() {
   SwaggerModule.setup(swaggerPath, app, document, swaggerSetupOptions)
 
   void app.listen(PORT)
-  console.log('listen app on:', PORT)
+  console.log(`listen app on: ${PORT} and env:  ${NODE_ENV}`, )
 
   return app
 }

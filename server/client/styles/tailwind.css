@@ -11,7 +11,7 @@
 }
 
 .a-scroll .logo img {
-  @apply w-14;
+  @apply w-10 mt-6;
 }
 
 .a-scroll h2 a {

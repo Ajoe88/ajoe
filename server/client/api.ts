@@ -1,6 +1,6 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parseCookies } from 'nookies'
-import redirect from './redirect'
+// import redirect from './redirect'
 
 const setHeaders = (token: string): Headers => {
   const headers = new Headers()
@@ -28,13 +28,17 @@ export default async function apiFetch<T>(
 ): Promise<T | void> {
   const { token } = parseCookies({ req })
   if (!token && res) {
-    redirect(res, '/login')
-    return
+    // redirect(res, '/login')
+    // return
   }
 
   const headers = setHeaders(token)
+  // console.log(req, res, process.env.NEXT_PUBLIC_HOST, process.env.CUSTOM_HOSTNAME, process.env.HOSTNAME)
+  // internal call should be http://localhost:3000 in docker
+  // external call should be http://domain:80 in client
 
-  return await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/${apiPath}`, {
+  const domain = req || res ? 'http://localhost:3000' : ''
+  return await fetch(`${domain}/api/${apiPath}`, {
     headers,
     method,
     credentials: 'include',

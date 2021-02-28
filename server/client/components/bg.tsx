@@ -5,7 +5,7 @@ export default function BackgroundImage() {
   // style={{ backgroundImage: `url(${imageUrl})` }}
   return (
     <div className={bgcss.background}>
-      {Array.from({ length: 100 }, (k, i) => (
+      {Array.from({ length: 36 }, (k, i) => (
         <div className={bgcss.circleContainer} key={i}>
           <div className={bgcss.circle}></div>
         </div>

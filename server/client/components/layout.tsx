@@ -20,12 +20,11 @@ const { name, title, description } = siteConfiguration
 
 export default function Layout({ children, home }: LayoutProps) {
   const scrollPos = useScrollPosition()
-  console.log(scrollPos, 'scrollPos')
   return (
     <div
       className={
         'container-wrapper w-full h-full text-gray-500 ' +
-        (scrollPos > 240 ? 'a-scroll' : '')
+        (scrollPos > 230 ? 'a-scroll' : '')
       }
     >
       <div className="w-full z-10 absolute inset-x-0">
