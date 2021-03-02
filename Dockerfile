@@ -23,8 +23,8 @@ COPY admin/package*.json  ./admin/
 
 # Install dependencies
 # SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/
-RUN cd admin; npm ci --loglevel=$NPM_LOG_LEVEL;
-RUN cd server; npm ci --loglevel=$NPM_LOG_LEVEL;
+RUN cd admin; SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm ci --loglevel=$NPM_LOG_LEVEL;
+RUN cd server; SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm ci --loglevel=$NPM_LOG_LEVEL;
 
 COPY . .
 
