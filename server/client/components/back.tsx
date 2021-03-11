@@ -1,9 +1,8 @@
 import Link from 'next/link'
-import styles from '../styles/layout.module.css'
 
 const BackToHome = ({ home }: { home?: boolean }) => {
   return !home ? (
-    <div className={styles.backToHome}>
+    <div className="p-6">
       <Link href="/">
         <a>← Back to home</a>
       </Link>

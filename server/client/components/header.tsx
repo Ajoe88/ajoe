@@ -12,14 +12,14 @@ const Header = ({ name }: HeaderProps) => (
         <a className="block w-20 mx-auto">
           <img
             src="/images/profile.jpg"
-            className="w-28 rounded-full mx-auto mt-2 opacity-90"
+            className="w-28 rounded-full mx-auto mt-2"
             alt={name}
           />
         </a>
       </Link>
-      <h2 className="text-center group">
+      <h2 className="text-center">
         <Link href="/">
-          <a className="text-4xl md:text-5xl text-gray-300 text-opacity-80 px-1">
+          <a className="text-4xl md:text-5xl text-opacity-60 px-1 ml-4">
             {name}
           </a>
         </Link>
@@ -27,7 +27,7 @@ const Header = ({ name }: HeaderProps) => (
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
           fill="currentColor"
-          className="w-5 inline-block text-pink-800 transition transform group-hover:rotate-45"
+          className="w-5 inline-block text-red-900 animate-spin-slow"
         >
           <path
             fillRule="evenodd"

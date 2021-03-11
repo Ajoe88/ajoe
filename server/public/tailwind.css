@@ -553,6 +553,8 @@ video {
 
 .container {
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @media (min-width: 640px) {
@@ -7802,6 +7804,66 @@ video {
 }
 
 .focus\:bg-opacity-100:focus {
+  --tw-bg-opacity: 1;
+}
+
+.active\:bg-opacity-0:active {
+  --tw-bg-opacity: 0;
+}
+
+.active\:bg-opacity-5:active {
+  --tw-bg-opacity: 0.05;
+}
+
+.active\:bg-opacity-10:active {
+  --tw-bg-opacity: 0.1;
+}
+
+.active\:bg-opacity-20:active {
+  --tw-bg-opacity: 0.2;
+}
+
+.active\:bg-opacity-25:active {
+  --tw-bg-opacity: 0.25;
+}
+
+.active\:bg-opacity-30:active {
+  --tw-bg-opacity: 0.3;
+}
+
+.active\:bg-opacity-40:active {
+  --tw-bg-opacity: 0.4;
+}
+
+.active\:bg-opacity-50:active {
+  --tw-bg-opacity: 0.5;
+}
+
+.active\:bg-opacity-60:active {
+  --tw-bg-opacity: 0.6;
+}
+
+.active\:bg-opacity-70:active {
+  --tw-bg-opacity: 0.7;
+}
+
+.active\:bg-opacity-75:active {
+  --tw-bg-opacity: 0.75;
+}
+
+.active\:bg-opacity-80:active {
+  --tw-bg-opacity: 0.8;
+}
+
+.active\:bg-opacity-90:active {
+  --tw-bg-opacity: 0.9;
+}
+
+.active\:bg-opacity-95:active {
+  --tw-bg-opacity: 0.95;
+}
+
+.active\:bg-opacity-100:active {
   --tw-bg-opacity: 1;
 }
 
@@ -28549,6 +28611,74 @@ video {
   --tw-rotate: -1deg;
 }
 
+.group:hover .group-hover\:rotate-0 {
+  --tw-rotate: 0deg;
+}
+
+.group:hover .group-hover\:rotate-1 {
+  --tw-rotate: 1deg;
+}
+
+.group:hover .group-hover\:rotate-2 {
+  --tw-rotate: 2deg;
+}
+
+.group:hover .group-hover\:rotate-3 {
+  --tw-rotate: 3deg;
+}
+
+.group:hover .group-hover\:rotate-6 {
+  --tw-rotate: 6deg;
+}
+
+.group:hover .group-hover\:rotate-12 {
+  --tw-rotate: 12deg;
+}
+
+.group:hover .group-hover\:rotate-45 {
+  --tw-rotate: 45deg;
+}
+
+.group:hover .group-hover\:rotate-90 {
+  --tw-rotate: 90deg;
+}
+
+.group:hover .group-hover\:rotate-180 {
+  --tw-rotate: 180deg;
+}
+
+.group:hover .group-hover\:-rotate-180 {
+  --tw-rotate: -180deg;
+}
+
+.group:hover .group-hover\:-rotate-90 {
+  --tw-rotate: -90deg;
+}
+
+.group:hover .group-hover\:-rotate-45 {
+  --tw-rotate: -45deg;
+}
+
+.group:hover .group-hover\:-rotate-12 {
+  --tw-rotate: -12deg;
+}
+
+.group:hover .group-hover\:-rotate-6 {
+  --tw-rotate: -6deg;
+}
+
+.group:hover .group-hover\:-rotate-3 {
+  --tw-rotate: -3deg;
+}
+
+.group:hover .group-hover\:-rotate-2 {
+  --tw-rotate: -2deg;
+}
+
+.group:hover .group-hover\:-rotate-1 {
+  --tw-rotate: -1deg;
+}
+
 .hover\:rotate-0:hover {
   --tw-rotate: 0deg;
 }
@@ -31151,6 +31281,26 @@ video {
   }
 }
 
+@-webkit-keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(45deg);
+  }
+}
+
 .animate-none {
   -webkit-animation: none;
           animation: none;
@@ -31176,9 +31326,16 @@ video {
           animation: bounce 1s infinite;
 }
 
+.animate-wiggle {
+  -webkit-animation: wiggle 1s ease-in-out infinite;
+          animation: wiggle 1s ease-in-out infinite;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -38428,6 +38585,66 @@ video {
   }
 
   .sm\:focus\:bg-opacity-100:focus {
+    --tw-bg-opacity: 1;
+  }
+
+  .sm\:active\:bg-opacity-0:active {
+    --tw-bg-opacity: 0;
+  }
+
+  .sm\:active\:bg-opacity-5:active {
+    --tw-bg-opacity: 0.05;
+  }
+
+  .sm\:active\:bg-opacity-10:active {
+    --tw-bg-opacity: 0.1;
+  }
+
+  .sm\:active\:bg-opacity-20:active {
+    --tw-bg-opacity: 0.2;
+  }
+
+  .sm\:active\:bg-opacity-25:active {
+    --tw-bg-opacity: 0.25;
+  }
+
+  .sm\:active\:bg-opacity-30:active {
+    --tw-bg-opacity: 0.3;
+  }
+
+  .sm\:active\:bg-opacity-40:active {
+    --tw-bg-opacity: 0.4;
+  }
+
+  .sm\:active\:bg-opacity-50:active {
+    --tw-bg-opacity: 0.5;
+  }
+
+  .sm\:active\:bg-opacity-60:active {
+    --tw-bg-opacity: 0.6;
+  }
+
+  .sm\:active\:bg-opacity-70:active {
+    --tw-bg-opacity: 0.7;
+  }
+
+  .sm\:active\:bg-opacity-75:active {
+    --tw-bg-opacity: 0.75;
+  }
+
+  .sm\:active\:bg-opacity-80:active {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .sm\:active\:bg-opacity-90:active {
+    --tw-bg-opacity: 0.9;
+  }
+
+  .sm\:active\:bg-opacity-95:active {
+    --tw-bg-opacity: 0.95;
+  }
+
+  .sm\:active\:bg-opacity-100:active {
     --tw-bg-opacity: 1;
   }
 
@@ -59162,6 +59379,74 @@ video {
     --tw-rotate: -1deg;
   }
 
+  .group:hover .sm\:group-hover\:rotate-0 {
+    --tw-rotate: 0deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-1 {
+    --tw-rotate: 1deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-2 {
+    --tw-rotate: 2deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-3 {
+    --tw-rotate: 3deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-6 {
+    --tw-rotate: 6deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-12 {
+    --tw-rotate: 12deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-45 {
+    --tw-rotate: 45deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-90 {
+    --tw-rotate: 90deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-180 {
+    --tw-rotate: 180deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-180 {
+    --tw-rotate: -180deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-90 {
+    --tw-rotate: -90deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-45 {
+    --tw-rotate: -45deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-12 {
+    --tw-rotate: -12deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-6 {
+    --tw-rotate: -6deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-3 {
+    --tw-rotate: -3deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-2 {
+    --tw-rotate: -2deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-1 {
+    --tw-rotate: -1deg;
+  }
+
   .sm\:hover\:rotate-0:hover {
     --tw-rotate: 0deg;
   }
@@ -61722,11 +62007,18 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .sm\:animate-wiggle {
+    -webkit-animation: wiggle 1s ease-in-out infinite;
+            animation: wiggle 1s ease-in-out infinite;
+  }
 }
 
 @media (min-width: 768px) {
   .md\:container {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -68976,6 +69268,66 @@ video {
   }
 
   .md\:focus\:bg-opacity-100:focus {
+    --tw-bg-opacity: 1;
+  }
+
+  .md\:active\:bg-opacity-0:active {
+    --tw-bg-opacity: 0;
+  }
+
+  .md\:active\:bg-opacity-5:active {
+    --tw-bg-opacity: 0.05;
+  }
+
+  .md\:active\:bg-opacity-10:active {
+    --tw-bg-opacity: 0.1;
+  }
+
+  .md\:active\:bg-opacity-20:active {
+    --tw-bg-opacity: 0.2;
+  }
+
+  .md\:active\:bg-opacity-25:active {
+    --tw-bg-opacity: 0.25;
+  }
+
+  .md\:active\:bg-opacity-30:active {
+    --tw-bg-opacity: 0.3;
+  }
+
+  .md\:active\:bg-opacity-40:active {
+    --tw-bg-opacity: 0.4;
+  }
+
+  .md\:active\:bg-opacity-50:active {
+    --tw-bg-opacity: 0.5;
+  }
+
+  .md\:active\:bg-opacity-60:active {
+    --tw-bg-opacity: 0.6;
+  }
+
+  .md\:active\:bg-opacity-70:active {
+    --tw-bg-opacity: 0.7;
+  }
+
+  .md\:active\:bg-opacity-75:active {
+    --tw-bg-opacity: 0.75;
+  }
+
+  .md\:active\:bg-opacity-80:active {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .md\:active\:bg-opacity-90:active {
+    --tw-bg-opacity: 0.9;
+  }
+
+  .md\:active\:bg-opacity-95:active {
+    --tw-bg-opacity: 0.95;
+  }
+
+  .md\:active\:bg-opacity-100:active {
     --tw-bg-opacity: 1;
   }
 
@@ -89710,6 +90062,74 @@ video {
     --tw-rotate: -1deg;
   }
 
+  .group:hover .md\:group-hover\:rotate-0 {
+    --tw-rotate: 0deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-1 {
+    --tw-rotate: 1deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-2 {
+    --tw-rotate: 2deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-3 {
+    --tw-rotate: 3deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-6 {
+    --tw-rotate: 6deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-12 {
+    --tw-rotate: 12deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-45 {
+    --tw-rotate: 45deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-90 {
+    --tw-rotate: 90deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-180 {
+    --tw-rotate: 180deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-180 {
+    --tw-rotate: -180deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-90 {
+    --tw-rotate: -90deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-45 {
+    --tw-rotate: -45deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-12 {
+    --tw-rotate: -12deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-6 {
+    --tw-rotate: -6deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-3 {
+    --tw-rotate: -3deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-2 {
+    --tw-rotate: -2deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-1 {
+    --tw-rotate: -1deg;
+  }
+
   .md\:hover\:rotate-0:hover {
     --tw-rotate: 0deg;
   }
@@ -92270,11 +92690,18 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .md\:animate-wiggle {
+    -webkit-animation: wiggle 1s ease-in-out infinite;
+            animation: wiggle 1s ease-in-out infinite;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:container {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -99524,6 +99951,66 @@ video {
   }
 
   .lg\:focus\:bg-opacity-100:focus {
+    --tw-bg-opacity: 1;
+  }
+
+  .lg\:active\:bg-opacity-0:active {
+    --tw-bg-opacity: 0;
+  }
+
+  .lg\:active\:bg-opacity-5:active {
+    --tw-bg-opacity: 0.05;
+  }
+
+  .lg\:active\:bg-opacity-10:active {
+    --tw-bg-opacity: 0.1;
+  }
+
+  .lg\:active\:bg-opacity-20:active {
+    --tw-bg-opacity: 0.2;
+  }
+
+  .lg\:active\:bg-opacity-25:active {
+    --tw-bg-opacity: 0.25;
+  }
+
+  .lg\:active\:bg-opacity-30:active {
+    --tw-bg-opacity: 0.3;
+  }
+
+  .lg\:active\:bg-opacity-40:active {
+    --tw-bg-opacity: 0.4;
+  }
+
+  .lg\:active\:bg-opacity-50:active {
+    --tw-bg-opacity: 0.5;
+  }
+
+  .lg\:active\:bg-opacity-60:active {
+    --tw-bg-opacity: 0.6;
+  }
+
+  .lg\:active\:bg-opacity-70:active {
+    --tw-bg-opacity: 0.7;
+  }
+
+  .lg\:active\:bg-opacity-75:active {
+    --tw-bg-opacity: 0.75;
+  }
+
+  .lg\:active\:bg-opacity-80:active {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .lg\:active\:bg-opacity-90:active {
+    --tw-bg-opacity: 0.9;
+  }
+
+  .lg\:active\:bg-opacity-95:active {
+    --tw-bg-opacity: 0.95;
+  }
+
+  .lg\:active\:bg-opacity-100:active {
     --tw-bg-opacity: 1;
   }
 
@@ -120258,6 +120745,74 @@ video {
     --tw-rotate: -1deg;
   }
 
+  .group:hover .lg\:group-hover\:rotate-0 {
+    --tw-rotate: 0deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-1 {
+    --tw-rotate: 1deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-2 {
+    --tw-rotate: 2deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-3 {
+    --tw-rotate: 3deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-6 {
+    --tw-rotate: 6deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-12 {
+    --tw-rotate: 12deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-45 {
+    --tw-rotate: 45deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-90 {
+    --tw-rotate: 90deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-180 {
+    --tw-rotate: 180deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-180 {
+    --tw-rotate: -180deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-90 {
+    --tw-rotate: -90deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-45 {
+    --tw-rotate: -45deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-12 {
+    --tw-rotate: -12deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-6 {
+    --tw-rotate: -6deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-3 {
+    --tw-rotate: -3deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-2 {
+    --tw-rotate: -2deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-1 {
+    --tw-rotate: -1deg;
+  }
+
   .lg\:hover\:rotate-0:hover {
     --tw-rotate: 0deg;
   }
@@ -122818,11 +123373,18 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .lg\:animate-wiggle {
+    -webkit-animation: wiggle 1s ease-in-out infinite;
+            animation: wiggle 1s ease-in-out infinite;
+  }
 }
 
 @media (min-width: 1280px) {
   .xl\:container {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -130072,6 +130634,66 @@ video {
   }
 
   .xl\:focus\:bg-opacity-100:focus {
+    --tw-bg-opacity: 1;
+  }
+
+  .xl\:active\:bg-opacity-0:active {
+    --tw-bg-opacity: 0;
+  }
+
+  .xl\:active\:bg-opacity-5:active {
+    --tw-bg-opacity: 0.05;
+  }
+
+  .xl\:active\:bg-opacity-10:active {
+    --tw-bg-opacity: 0.1;
+  }
+
+  .xl\:active\:bg-opacity-20:active {
+    --tw-bg-opacity: 0.2;
+  }
+
+  .xl\:active\:bg-opacity-25:active {
+    --tw-bg-opacity: 0.25;
+  }
+
+  .xl\:active\:bg-opacity-30:active {
+    --tw-bg-opacity: 0.3;
+  }
+
+  .xl\:active\:bg-opacity-40:active {
+    --tw-bg-opacity: 0.4;
+  }
+
+  .xl\:active\:bg-opacity-50:active {
+    --tw-bg-opacity: 0.5;
+  }
+
+  .xl\:active\:bg-opacity-60:active {
+    --tw-bg-opacity: 0.6;
+  }
+
+  .xl\:active\:bg-opacity-70:active {
+    --tw-bg-opacity: 0.7;
+  }
+
+  .xl\:active\:bg-opacity-75:active {
+    --tw-bg-opacity: 0.75;
+  }
+
+  .xl\:active\:bg-opacity-80:active {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .xl\:active\:bg-opacity-90:active {
+    --tw-bg-opacity: 0.9;
+  }
+
+  .xl\:active\:bg-opacity-95:active {
+    --tw-bg-opacity: 0.95;
+  }
+
+  .xl\:active\:bg-opacity-100:active {
     --tw-bg-opacity: 1;
   }
 
@@ -150806,6 +151428,74 @@ video {
     --tw-rotate: -1deg;
   }
 
+  .group:hover .xl\:group-hover\:rotate-0 {
+    --tw-rotate: 0deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-1 {
+    --tw-rotate: 1deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-2 {
+    --tw-rotate: 2deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-3 {
+    --tw-rotate: 3deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-6 {
+    --tw-rotate: 6deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-12 {
+    --tw-rotate: 12deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-45 {
+    --tw-rotate: 45deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-90 {
+    --tw-rotate: 90deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-180 {
+    --tw-rotate: 180deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-180 {
+    --tw-rotate: -180deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-90 {
+    --tw-rotate: -90deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-45 {
+    --tw-rotate: -45deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-12 {
+    --tw-rotate: -12deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-6 {
+    --tw-rotate: -6deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-3 {
+    --tw-rotate: -3deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-2 {
+    --tw-rotate: -2deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-1 {
+    --tw-rotate: -1deg;
+  }
+
   .xl\:hover\:rotate-0:hover {
     --tw-rotate: 0deg;
   }
@@ -153366,11 +154056,18 @@ video {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
   }
+
+  .xl\:animate-wiggle {
+    -webkit-animation: wiggle 1s ease-in-out infinite;
+            animation: wiggle 1s ease-in-out infinite;
+  }
 }
 
 @media (min-width: 1536px) {
   .\32xl\:container {
     width: 100%;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   @media (min-width: 640px) {
@@ -160620,6 +161317,66 @@ video {
   }
 
   .\32xl\:focus\:bg-opacity-100:focus {
+    --tw-bg-opacity: 1;
+  }
+
+  .\32xl\:active\:bg-opacity-0:active {
+    --tw-bg-opacity: 0;
+  }
+
+  .\32xl\:active\:bg-opacity-5:active {
+    --tw-bg-opacity: 0.05;
+  }
+
+  .\32xl\:active\:bg-opacity-10:active {
+    --tw-bg-opacity: 0.1;
+  }
+
+  .\32xl\:active\:bg-opacity-20:active {
+    --tw-bg-opacity: 0.2;
+  }
+
+  .\32xl\:active\:bg-opacity-25:active {
+    --tw-bg-opacity: 0.25;
+  }
+
+  .\32xl\:active\:bg-opacity-30:active {
+    --tw-bg-opacity: 0.3;
+  }
+
+  .\32xl\:active\:bg-opacity-40:active {
+    --tw-bg-opacity: 0.4;
+  }
+
+  .\32xl\:active\:bg-opacity-50:active {
+    --tw-bg-opacity: 0.5;
+  }
+
+  .\32xl\:active\:bg-opacity-60:active {
+    --tw-bg-opacity: 0.6;
+  }
+
+  .\32xl\:active\:bg-opacity-70:active {
+    --tw-bg-opacity: 0.7;
+  }
+
+  .\32xl\:active\:bg-opacity-75:active {
+    --tw-bg-opacity: 0.75;
+  }
+
+  .\32xl\:active\:bg-opacity-80:active {
+    --tw-bg-opacity: 0.8;
+  }
+
+  .\32xl\:active\:bg-opacity-90:active {
+    --tw-bg-opacity: 0.9;
+  }
+
+  .\32xl\:active\:bg-opacity-95:active {
+    --tw-bg-opacity: 0.95;
+  }
+
+  .\32xl\:active\:bg-opacity-100:active {
     --tw-bg-opacity: 1;
   }
 
@@ -181354,6 +182111,74 @@ video {
     --tw-rotate: -1deg;
   }
 
+  .group:hover .\32xl\:group-hover\:rotate-0 {
+    --tw-rotate: 0deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-1 {
+    --tw-rotate: 1deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-2 {
+    --tw-rotate: 2deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-3 {
+    --tw-rotate: 3deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-6 {
+    --tw-rotate: 6deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-12 {
+    --tw-rotate: 12deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-45 {
+    --tw-rotate: 45deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-90 {
+    --tw-rotate: 90deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:rotate-180 {
+    --tw-rotate: 180deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-180 {
+    --tw-rotate: -180deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-90 {
+    --tw-rotate: -90deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-45 {
+    --tw-rotate: -45deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-12 {
+    --tw-rotate: -12deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-6 {
+    --tw-rotate: -6deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-3 {
+    --tw-rotate: -3deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-2 {
+    --tw-rotate: -2deg;
+  }
+
+  .group:hover .\32xl\:group-hover\:-rotate-1 {
+    --tw-rotate: -1deg;
+  }
+
   .\32xl\:hover\:rotate-0:hover {
     --tw-rotate: 0deg;
   }
@@ -183913,6 +184738,11 @@ video {
   .\32xl\:animate-bounce {
     -webkit-animation: bounce 1s infinite;
             animation: bounce 1s infinite;
+  }
+
+  .\32xl\:animate-wiggle {
+    -webkit-animation: wiggle 1s ease-in-out infinite;
+            animation: wiggle 1s ease-in-out infinite;
   }
 }
   

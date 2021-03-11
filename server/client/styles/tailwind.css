@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .a-scroll .a-header {
-  @apply flex fixed bg-black bg-opacity-60 mt-0;
+  @apply flex fixed bg-black bg-opacity-80 mt-0;
 }
 
 .a-scroll .logo {
@@ -11,7 +11,7 @@
 }
 
 .a-scroll .logo img {
-  @apply w-10 mt-6;
+  @apply w-10 mt-4;
 }
 
 .a-scroll h2 a {

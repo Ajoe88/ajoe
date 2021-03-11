@@ -23,7 +23,7 @@ export default function Layout({ children, home }: LayoutProps) {
   return (
     <div
       className={
-        'container-wrapper w-full h-full text-gray-500 ' +
+        'container-wrapper w-full h-full text-gray-300 ' +
         (scrollPos > 230 ? 'a-scroll' : '')
       }
     >
@@ -41,8 +41,10 @@ export default function Layout({ children, home }: LayoutProps) {
           <meta name="twitter:card" content="summary_large_image" />
         </Head>
         <Header name={name} />
-        <main className="mx-auto pt-0 p-2 sm:p-10 max-w-5xl">{children}</main>
-        <BackToHome home={home} />
+        <div className="mx-auto pt-0 p-2 sm:p-10 max-w-5xl">
+          <main className="text-gray-400">{children}</main>
+          <BackToHome home={home} />
+        </div>
         <Footer />
       </div>
       <BackgroundImage />
